@@ -9,7 +9,15 @@ import (
 )
 
 func init() {
+	/* orm por defecto
 	orm.RegisterDataBase("default", "postgres", "postgres://postgres:postgres2016@127.0.0.1:5432/udistrital?sslmode=disable&search_path=seguridad_social")
+	*/
+
+	orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+
+		beego.AppConfig.String("PGpass")+"@"+
+		beego.AppConfig.String("PGurls")+"/"+
+		beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+
+		beego.AppConfig.String("PGschemas")+"")
 }
 
 func main() {
@@ -19,4 +27,3 @@ func main() {
 	}
 	beego.Run()
 }
-
