@@ -11,10 +11,10 @@ import (
 
 type EdadUpc struct {
 	Id           int    `orm:"column(id);pk"`
-	EdadMax      int    `orm:"column(edad_max)"`
 	EdadMin      int    `orm:"column(edad_min)"`
+	EdadMax      int    `orm:"column(edad_max)"`
 	Vigencia     int    `orm:"column(vigencia)"`
-	AplicaGenerp string `orm:"column(aplica_generp);null"`
+	AplicaGenero string `orm:"column(aplica_genero);null"`
 }
 
 func (t *EdadUpc) TableName() string {

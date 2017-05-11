@@ -96,7 +96,7 @@ func GetAllTipoUpc(query map[string]string, fields []string, sortby []string, or
 	}
 
 	var l []TipoUpc
-	qs = qs.OrderBy(sortFields...)
+	qs = qs.OrderBy(sortFields...).RelatedSel("IdEdadUpc")
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

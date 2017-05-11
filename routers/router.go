@@ -28,12 +28,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/parentesco",
-			beego.NSInclude(
-				&controllers.ParentescoController{},
-			),
-		),
-
 		beego.NSNamespace("/tipo_zona_upc",
 			beego.NSInclude(
 				&controllers.TipoZonaUpcController{},

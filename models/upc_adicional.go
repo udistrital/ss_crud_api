@@ -5,21 +5,20 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type UpcAdicional struct {
-	Id              int         `orm:"column(id);pk"`
-	PersonaAsociada int         `orm:"column(persona_asociada)"`
-	FechaNacimiento time.Time   `orm:"column(fecha_nacimiento);type(date)"`
-	TipoDocumento   string      `orm:"column(tipo_documento)"`
-	Documento       string      `orm:"column(documento)"`
-	Nombre          string      `orm:"column(nombre)"`
-	Apellido        string      `orm:"column(apellido)"`
-	IdParentesco    *Parentesco `orm:"column(id_parentesco);rel(fk)"`
-	IdTipoUpc       *TipoUpc    `orm:"column(id_tipo_upc);rel(fk)"`
+	Id              int      `orm:"column(id);pk;auto"`
+	PersonaAsociada int      `orm:"column(persona_asociada)"`
+	TipoDocumento   string   `orm:"column(tipo_documento)"`
+	Documento       string   `orm:"column(documento)"`
+	Nombre          string   `orm:"column(nombre)"`
+	Apellido        string   `orm:"column(apellido)"`
+	IdParentesco    int      `orm:"column(id_parentesco);null"`
+	IdTipoUpc       *TipoUpc `orm:"column(id_tipo_upc);rel(fk)"`
+	Estado          string   `orm:"column(estado)"`
 }
 
 func (t *UpcAdicional) TableName() string {
@@ -101,7 +100,7 @@ func GetAllUpcAdicional(query map[string]string, fields []string, sortby []strin
 	}
 
 	var l []UpcAdicional
-	qs = qs.OrderBy(sortFields...)
+	qs = qs.OrderBy(sortFields...).RelatedSel("IdTipoUpc")
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
