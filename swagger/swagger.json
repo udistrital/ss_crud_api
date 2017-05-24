@@ -1,0 +1,1386 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Url http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/desc_seguridad_social/": {
+            "get": {
+                "tags": [
+                    "desc_seguridad_social"
+                ],
+                "description": "get DescSeguridadSocial",
+                "operationId": "DescSeguridadSocialController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocial"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "desc_seguridad_social"
+                ],
+                "description": "create DescSeguridadSocial",
+                "operationId": "DescSeguridadSocialController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DescSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DescSeguridadSocial"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/desc_seguridad_social/{id}": {
+            "get": {
+                "tags": [
+                    "desc_seguridad_social"
+                ],
+                "description": "get DescSeguridadSocial by id",
+                "operationId": "DescSeguridadSocialController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocial"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "desc_seguridad_social"
+                ],
+                "description": "update the DescSeguridadSocial",
+                "operationId": "DescSeguridadSocialController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DescSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocial"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "desc_seguridad_social"
+                ],
+                "description": "delete the DescSeguridadSocial",
+                "operationId": "DescSeguridadSocialController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/desc_seguridad_social_detalle/": {
+            "get": {
+                "tags": [
+                    "desc_seguridad_social_detalle"
+                ],
+                "description": "get DescSeguridadSocialDetalle",
+                "operationId": "DescSeguridadSocialDetalleController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocialDetalle"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "desc_seguridad_social_detalle"
+                ],
+                "description": "create DescSeguridadSocialDetalle",
+                "operationId": "DescSeguridadSocialDetalleController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DescSeguridadSocialDetalle content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocialDetalle"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DescSeguridadSocialDetalle"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/desc_seguridad_social_detalle/{id}": {
+            "get": {
+                "tags": [
+                    "desc_seguridad_social_detalle"
+                ],
+                "description": "get DescSeguridadSocialDetalle by id",
+                "operationId": "DescSeguridadSocialDetalleController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocialDetalle"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "desc_seguridad_social_detalle"
+                ],
+                "description": "update the DescSeguridadSocialDetalle",
+                "operationId": "DescSeguridadSocialDetalleController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DescSeguridadSocialDetalle content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocialDetalle"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/DescSeguridadSocialDetalle"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "desc_seguridad_social_detalle"
+                ],
+                "description": "delete the DescSeguridadSocialDetalle",
+                "operationId": "DescSeguridadSocialDetalleController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/edad_upc/": {
+            "get": {
+                "tags": [
+                    "edad_upc"
+                ],
+                "description": "get EdadUpc",
+                "operationId": "EdadUpcController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/EdadUpc"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "edad_upc"
+                ],
+                "description": "create EdadUpc",
+                "operationId": "EdadUpcController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for EdadUpc content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EdadUpc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.EdadUpc"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/edad_upc/{id}": {
+            "get": {
+                "tags": [
+                    "edad_upc"
+                ],
+                "description": "get EdadUpc by id",
+                "operationId": "EdadUpcController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/EdadUpc"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "edad_upc"
+                ],
+                "description": "update the EdadUpc",
+                "operationId": "EdadUpcController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for EdadUpc content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EdadUpc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/EdadUpc"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "edad_upc"
+                ],
+                "description": "delete the EdadUpc",
+                "operationId": "EdadUpcController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_pago_seguridad_social/": {
+            "get": {
+                "tags": [
+                    "tipo_pago_seguridad_social"
+                ],
+                "description": "get TipoPagoSeguridadSocial",
+                "operationId": "TipoPagoSeguridadSocialController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoPagoSeguridadSocial"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_pago_seguridad_social"
+                ],
+                "description": "create TipoPagoSeguridadSocial",
+                "operationId": "TipoPagoSeguridadSocialController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoPagoSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoPagoSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoPagoSeguridadSocial"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_pago_seguridad_social/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_pago_seguridad_social"
+                ],
+                "description": "get TipoPagoSeguridadSocial by id",
+                "operationId": "TipoPagoSeguridadSocialController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoPagoSeguridadSocial"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_pago_seguridad_social"
+                ],
+                "description": "update the TipoPagoSeguridadSocial",
+                "operationId": "TipoPagoSeguridadSocialController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoPagoSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoPagoSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoPagoSeguridadSocial"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_pago_seguridad_social"
+                ],
+                "description": "delete the TipoPagoSeguridadSocial",
+                "operationId": "TipoPagoSeguridadSocialController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_upc/": {
+            "get": {
+                "tags": [
+                    "tipo_upc"
+                ],
+                "description": "get TipoUpc",
+                "operationId": "TipoUpcController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoUpc"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_upc"
+                ],
+                "description": "create TipoUpc",
+                "operationId": "TipoUpcController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoUpc content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoUpc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoUpc"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_upc/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_upc"
+                ],
+                "description": "get TipoUpc by id",
+                "operationId": "TipoUpcController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoUpc"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_upc"
+                ],
+                "description": "update the TipoUpc",
+                "operationId": "TipoUpcController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoUpc content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoUpc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoUpc"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_upc"
+                ],
+                "description": "delete the TipoUpc",
+                "operationId": "TipoUpcController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_zona_upc/": {
+            "get": {
+                "tags": [
+                    "tipo_zona_upc"
+                ],
+                "description": "get TipoZonaUpc",
+                "operationId": "TipoZonaUpcController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoZonaUpc"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_zona_upc"
+                ],
+                "description": "create TipoZonaUpc",
+                "operationId": "TipoZonaUpcController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoZonaUpc content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoZonaUpc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoZonaUpc"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_zona_upc/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_zona_upc"
+                ],
+                "description": "get TipoZonaUpc by id",
+                "operationId": "TipoZonaUpcController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoZonaUpc"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_zona_upc"
+                ],
+                "description": "update the TipoZonaUpc",
+                "operationId": "TipoZonaUpcController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoZonaUpc content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TipoZonaUpc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/TipoZonaUpc"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_zona_upc"
+                ],
+                "description": "delete the TipoZonaUpc",
+                "operationId": "TipoZonaUpcController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/upc_adicional/": {
+            "get": {
+                "tags": [
+                    "upc_adicional"
+                ],
+                "description": "get UpcAdicional",
+                "operationId": "UpcAdicionalController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/UpcAdicional"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "upc_adicional"
+                ],
+                "description": "create UpcAdicional",
+                "operationId": "UpcAdicionalController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for UpcAdicional content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpcAdicional"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.UpcAdicional"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/upc_adicional/{id}": {
+            "get": {
+                "tags": [
+                    "upc_adicional"
+                ],
+                "description": "get UpcAdicional by id",
+                "operationId": "UpcAdicionalController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/UpcAdicional"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "upc_adicional"
+                ],
+                "description": "update the UpcAdicional",
+                "operationId": "UpcAdicionalController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for UpcAdicional content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpcAdicional"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/UpcAdicional"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "upc_adicional"
+                ],
+                "description": "delete the UpcAdicional",
+                "operationId": "UpcAdicionalController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "DescSeguridadSocial": {
+            "title": "DescSeguridadSocial",
+            "type": "object",
+            "properties": {
+                "Anio": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Mes": {
+                    "$ref": "#/definitions/int16"
+                },
+                "TipoNomina": {
+                    "type": "string"
+                }
+            }
+        },
+        "DescSeguridadSocialDetalle": {
+            "title": "DescSeguridadSocialDetalle",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdDescSeguridadSocial": {
+                    "$ref": "#/definitions/DescSeguridadSocial"
+                },
+                "IdDetalleLiquidacion": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTipoPagoSeguridadSocial": {
+                    "$ref": "#/definitions/TipoPagoSeguridadSocial"
+                },
+                "TipoPago": {
+                    "type": "string"
+                },
+                "Valor": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "EdadUpc": {
+            "title": "EdadUpc",
+            "type": "object",
+            "properties": {
+                "AplicaGenero": {
+                    "type": "string"
+                },
+                "EdadMax": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "EdadMin": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Vigencia": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "TipoPagoSeguridadSocial": {
+            "title": "TipoPagoSeguridadSocial",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "TipoUpc": {
+            "title": "TipoUpc",
+            "type": "object",
+            "properties": {
+                "Acuerdo": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEdadUpc": {
+                    "$ref": "#/definitions/EdadUpc"
+                },
+                "IdTipoZonaUpc": {
+                    "$ref": "#/definitions/TipoZonaUpc"
+                },
+                "Valor": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "TipoZonaUpc": {
+            "title": "TipoZonaUpc",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "UpcAdicional": {
+            "title": "UpcAdicional",
+            "type": "object",
+            "properties": {
+                "Apellido": {
+                    "type": "string"
+                },
+                "Documento": {
+                    "type": "string"
+                },
+                "Estado": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdParentesco": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTipoUpc": {
+                    "$ref": "#/definitions/TipoUpc"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "PersonaAsociada": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TipoDocumento": {
+                    "type": "string"
+                }
+            }
+        },
+        "int16": {
+            "type": "object"
+        }
+    },
+    "tags": [
+        {
+            "name": "desc_seguridad_social",
+            "description": "DescSeguridadSocialController oprations for DescSeguridadSocial\n"
+        },
+        {
+            "name": "edad_upc",
+            "description": "EdadUpcController oprations for EdadUpc\n"
+        },
+        {
+            "name": "tipo_zona_upc",
+            "description": "TipoZonaUpcController oprations for TipoZonaUpc\n"
+        },
+        {
+            "name": "tipo_pago_seguridad_social",
+            "description": "TipoPagoSeguridadSocialController oprations for TipoPagoSeguridadSocial\n"
+        },
+        {
+            "name": "tipo_upc",
+            "description": "TipoUpcController oprations for TipoUpc\n"
+        },
+        {
+            "name": "upc_adicional",
+            "description": "UpcAdicionalController oprations for UpcAdicional\n"
+        },
+        {
+            "name": "desc_seguridad_social_detalle",
+            "description": "DescSeguridadSocialDetalleController oprations for DescSeguridadSocialDetalle\n"
+        }
+    ]
+}

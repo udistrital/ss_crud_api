@@ -10,7 +10,7 @@ import (
 )
 
 type TipoUpc struct {
-	Id            int          `orm:"column(id);pk"`
+	Id            int          `orm:"column(id);pk;auto"`
 	Valor         int64        `orm:"column(valor)"`
 	Acuerdo       string       `orm:"column(acuerdo)"`
 	IdEdadUpc     *EdadUpc     `orm:"column(id_edad_upc);rel(fk)"`
