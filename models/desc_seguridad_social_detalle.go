@@ -10,9 +10,8 @@ import (
 )
 
 type DescSeguridadSocialDetalle struct {
-	Id                        int                      `orm:"column(id);pk"`
+	Id                        int                      `orm:"column(id);pk;auto"`
 	IdDetalleLiquidacion      int                      `orm:"column(id_detalle_liquidacion)"`
-	TipoPago                  string                   `orm:"column(tipo_pago)"`
 	Valor                     int64                    `orm:"column(valor)"`
 	IdDescSeguridadSocial     *DescSeguridadSocial     `orm:"column(id_desc_seguridad_social);rel(fk)"`
 	IdTipoPagoSeguridadSocial *TipoPagoSeguridadSocial `orm:"column(id_tipo_pago_seguridad_social);rel(fk)"`
