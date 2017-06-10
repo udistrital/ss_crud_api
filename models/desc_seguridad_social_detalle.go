@@ -96,7 +96,7 @@ func GetAllDescSeguridadSocialDetalle(query map[string]string, fields []string, 
 	}
 
 	var l []DescSeguridadSocialDetalle
-	qs = qs.OrderBy(sortFields...)
+	qs = qs.OrderBy(sortFields...).RelatedSel("IdDescSeguridadSocial", "IdTipoPagoSeguridadSocial")
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
