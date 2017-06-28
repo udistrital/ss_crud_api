@@ -9,52 +9,55 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type DescSeguridadSocialDetalle struct {
-	Id                        int                      `orm:"column(id);pk;auto"`
-	IdDetalleLiquidacion      int                      `orm:"column(id_detalle_liquidacion)"`
-	Valor                     int64                    `orm:"column(valor)"`
-	IdDescSeguridadSocial     *DescSeguridadSocial     `orm:"column(id_desc_seguridad_social);rel(fk)"`
-	IdTipoPagoSeguridadSocial *TipoPagoSeguridadSocial `orm:"column(id_tipo_pago_seguridad_social);rel(fk)"`
+type RangoEdadUpc struct {
+	Id           int     `orm:"column(id);pk;auto"`
+	EdadMax      float64 `orm:"column(edad_max)"`
+	EdadMin      float64 `orm:"column(edad_min)"`
+	AplicaGenero string  `orm:"column(aplica_genero);null"`
 }
 
-func (t *DescSeguridadSocialDetalle) TableName() string {
-	return "desc_seguridad_social_detalle"
+func (t *RangoEdadUpc) TableName() string {
+	return "rango_edad_upc"
 }
 
 func init() {
-	orm.RegisterModel(new(DescSeguridadSocialDetalle))
+	orm.RegisterModel(new(RangoEdadUpc))
 }
 
-// AddDescSeguridadSocialDetalle insert a new DescSeguridadSocialDetalle into database and returns
+// AddRangoEdadUpc insert a new RangoEdadUpc into database and returns
 // last inserted Id on success.
-func AddDescSeguridadSocialDetalle(m *DescSeguridadSocialDetalle) (id int64, err error) {
+func AddRangoEdadUpc(m *RangoEdadUpc) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetDescSeguridadSocialDetalleById retrieves DescSeguridadSocialDetalle by Id. Returns error if
+// GetRangoEdadUpcById retrieves RangoEdadUpc by Id. Returns error if
 // Id doesn't exist
-func GetDescSeguridadSocialDetalleById(id int) (v *DescSeguridadSocialDetalle, err error) {
+func GetRangoEdadUpcById(id int) (v *RangoEdadUpc, err error) {
 	o := orm.NewOrm()
-	v = &DescSeguridadSocialDetalle{Id: id}
+	v = &RangoEdadUpc{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllDescSeguridadSocialDetalle retrieves all DescSeguridadSocialDetalle matches certain condition. Returns empty list if
+// GetAllRangoEdadUpc retrieves all RangoEdadUpc matches certain condition. Returns empty list if
 // no records exist
-func GetAllDescSeguridadSocialDetalle(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllRangoEdadUpc(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(DescSeguridadSocialDetalle))
+	qs := o.QueryTable(new(RangoEdadUpc))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -95,8 +98,8 @@ func GetAllDescSeguridadSocialDetalle(query map[string]string, fields []string, 
 		}
 	}
 
-	var l []DescSeguridadSocialDetalle
-	qs = qs.OrderBy(sortFields...).RelatedSel("IdDescSeguridadSocial", "IdTipoPagoSeguridadSocial")
+	var l []RangoEdadUpc
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
@@ -118,11 +121,11 @@ func GetAllDescSeguridadSocialDetalle(query map[string]string, fields []string, 
 	return nil, err
 }
 
-// UpdateDescSeguridadSocialDetalle updates DescSeguridadSocialDetalle by Id and returns error if
+// UpdateRangoEdadUpc updates RangoEdadUpc by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateDescSeguridadSocialDetalleById(m *DescSeguridadSocialDetalle) (err error) {
+func UpdateRangoEdadUpcById(m *RangoEdadUpc) (err error) {
 	o := orm.NewOrm()
-	v := DescSeguridadSocialDetalle{Id: m.Id}
+	v := RangoEdadUpc{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -133,15 +136,15 @@ func UpdateDescSeguridadSocialDetalleById(m *DescSeguridadSocialDetalle) (err er
 	return
 }
 
-// DeleteDescSeguridadSocialDetalle deletes DescSeguridadSocialDetalle by Id and returns error if
+// DeleteRangoEdadUpc deletes RangoEdadUpc by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteDescSeguridadSocialDetalle(id int) (err error) {
+func DeleteRangoEdadUpc(id int) (err error) {
 	o := orm.NewOrm()
-	v := DescSeguridadSocialDetalle{Id: id}
+	v := RangoEdadUpc{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&DescSeguridadSocialDetalle{Id: id}); err == nil {
+		if num, err = o.Delete(&RangoEdadUpc{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

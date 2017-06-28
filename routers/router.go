@@ -8,41 +8,28 @@
 package routers
 
 import (
-	"github.com/udistrital/ss_crud_api/controllers"
-
 	"github.com/astaxie/beego"
+	"github.com/udistrital/ss_crud_api/controllers"
 )
 
 func init() {
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/desc_seguridad_social",
+		beego.NSNamespace("/tipo_pago",
 			beego.NSInclude(
-				&controllers.DescSeguridadSocialController{},
+				&controllers.TipoPagoController{},
 			),
 		),
 
-		beego.NSNamespace("/edad_upc",
+		beego.NSNamespace("/periodo_pago",
 			beego.NSInclude(
-				&controllers.EdadUpcController{},
+				&controllers.PeriodoPagoController{},
 			),
 		),
 
-		beego.NSNamespace("/tipo_zona_upc",
+		beego.NSNamespace("/pago",
 			beego.NSInclude(
-				&controllers.TipoZonaUpcController{},
-			),
-		),
-
-		beego.NSNamespace("/tipo_pago_seguridad_social",
-			beego.NSInclude(
-				&controllers.TipoPagoSeguridadSocialController{},
-			),
-		),
-
-		beego.NSNamespace("/tipo_upc",
-			beego.NSInclude(
-				&controllers.TipoUpcController{},
+				&controllers.PagoController{},
 			),
 		),
 
@@ -52,9 +39,21 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/desc_seguridad_social_detalle",
+		beego.NSNamespace("/zona_upc",
 			beego.NSInclude(
-				&controllers.DescSeguridadSocialDetalleController{},
+				&controllers.ZonaUpcController{},
+			),
+		),
+
+		beego.NSNamespace("/rango_edad_upc",
+			beego.NSInclude(
+				&controllers.RangoEdadUpcController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_upc",
+			beego.NSInclude(
+				&controllers.TipoUpcController{},
 			),
 		),
 	)

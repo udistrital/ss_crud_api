@@ -11,13 +11,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// DescSeguridadSocialDetalleController oprations for DescSeguridadSocialDetalle
-type DescSeguridadSocialDetalleController struct {
+// ZonaUpcController operations for ZonaUpc
+type ZonaUpcController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *DescSeguridadSocialDetalleController) URLMapping() {
+func (c *ZonaUpcController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -27,15 +27,15 @@ func (c *DescSeguridadSocialDetalleController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create DescSeguridadSocialDetalle
-// @Param	body		body 	models.DescSeguridadSocialDetalle	true		"body for DescSeguridadSocialDetalle content"
-// @Success 201 {int} models.DescSeguridadSocialDetalle
+// @Description create ZonaUpc
+// @Param	body		body 	models.ZonaUpc	true		"body for ZonaUpc content"
+// @Success 201 {int} models.ZonaUpc
 // @Failure 403 body is empty
 // @router / [post]
-func (c *DescSeguridadSocialDetalleController) Post() {
-	var v models.DescSeguridadSocialDetalle
+func (c *ZonaUpcController) Post() {
+	var v models.ZonaUpc
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddDescSeguridadSocialDetalle(&v); err == nil {
+		if _, err := models.AddZonaUpc(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -49,15 +49,15 @@ func (c *DescSeguridadSocialDetalleController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get DescSeguridadSocialDetalle by id
+// @Description get ZonaUpc by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.DescSeguridadSocialDetalle
+// @Success 200 {object} models.ZonaUpc
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *DescSeguridadSocialDetalleController) GetOne() {
+func (c *ZonaUpcController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetDescSeguridadSocialDetalleById(id)
+	v, err := models.GetZonaUpcById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -68,17 +68,17 @@ func (c *DescSeguridadSocialDetalleController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get DescSeguridadSocialDetalle
+// @Description get ZonaUpc
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.DescSeguridadSocialDetalle
+// @Success 200 {object} models.ZonaUpc
 // @Failure 403
 // @router / [get]
-func (c *DescSeguridadSocialDetalleController) GetAll() {
+func (c *ZonaUpcController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -120,7 +120,7 @@ func (c *DescSeguridadSocialDetalleController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllDescSeguridadSocialDetalle(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllZonaUpc(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -131,18 +131,18 @@ func (c *DescSeguridadSocialDetalleController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the DescSeguridadSocialDetalle
+// @Description update the ZonaUpc
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.DescSeguridadSocialDetalle	true		"body for DescSeguridadSocialDetalle content"
-// @Success 200 {object} models.DescSeguridadSocialDetalle
+// @Param	body		body 	models.ZonaUpc	true		"body for ZonaUpc content"
+// @Success 200 {object} models.ZonaUpc
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *DescSeguridadSocialDetalleController) Put() {
+func (c *ZonaUpcController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.DescSeguridadSocialDetalle{Id: id}
+	v := models.ZonaUpc{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateDescSeguridadSocialDetalleById(&v); err == nil {
+		if err := models.UpdateZonaUpcById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -155,15 +155,15 @@ func (c *DescSeguridadSocialDetalleController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the DescSeguridadSocialDetalle
+// @Description delete the ZonaUpc
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *DescSeguridadSocialDetalleController) Delete() {
+func (c *ZonaUpcController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteDescSeguridadSocialDetalle(id); err == nil {
+	if err := models.DeleteZonaUpc(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

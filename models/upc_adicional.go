@@ -5,20 +5,23 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type UpcAdicional struct {
-	Id              int      `orm:"column(id);pk;auto"`
-	PersonaAsociada int      `orm:"column(persona_asociada)"`
-	TipoDocumento   string   `orm:"column(tipo_documento)"`
-	Documento       string   `orm:"column(documento)"`
-	Nombre          string   `orm:"column(nombre)"`
-	Apellido        string   `orm:"column(apellido)"`
-	IdParentesco    int      `orm:"column(id_parentesco);null"`
-	IdTipoUpc       *TipoUpc `orm:"column(id_tipo_upc);rel(fk)"`
-	Estado          string   `orm:"column(estado)"`
+	Id                int       `orm:"column(id);pk;auto"`
+	PersonaAsociada   int       `orm:"column(persona_asociada)"`
+	ParametroEstandar int       `orm:"column(parametro_estandar)"`
+	NumDocumento      string    `orm:"column(num_documento)"`
+	TipoUpc           *TipoUpc  `orm:"column(tipo_upc);rel(fk)"`
+	PrimerNombre      string    `orm:"column(primer_nombre)"`
+	SegundoNombre     string    `orm:"column(segundo_nombre);null"`
+	PrimerApellido    string    `orm:"column(primer_apellido)"`
+	SegundoApellido   string    `orm:"column(segundo_apellido);null"`
+	FechaDeNacimiento time.Time `orm:"column(fecha_de_nacimiento);type(date)"`
+	Activo            bool      `orm:"column(activo);null"`
 }
 
 func (t *UpcAdicional) TableName() string {
@@ -58,7 +61,11 @@ func GetAllUpcAdicional(query map[string]string, fields []string, sortby []strin
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -100,7 +107,7 @@ func GetAllUpcAdicional(query map[string]string, fields []string, sortby []strin
 	}
 
 	var l []UpcAdicional
-	qs = qs.OrderBy(sortFields...).RelatedSel("IdTipoUpc")
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

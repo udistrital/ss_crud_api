@@ -11,13 +11,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// DescSeguridadSocialController oprations for DescSeguridadSocial
-type DescSeguridadSocialController struct {
+// RangoEdadUpcController operations for RangoEdadUpc
+type RangoEdadUpcController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *DescSeguridadSocialController) URLMapping() {
+func (c *RangoEdadUpcController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -27,15 +27,15 @@ func (c *DescSeguridadSocialController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create DescSeguridadSocial
-// @Param	body		body 	models.DescSeguridadSocial	true		"body for DescSeguridadSocial content"
-// @Success 201 {int} models.DescSeguridadSocial
+// @Description create RangoEdadUpc
+// @Param	body		body 	models.RangoEdadUpc	true		"body for RangoEdadUpc content"
+// @Success 201 {int} models.RangoEdadUpc
 // @Failure 403 body is empty
 // @router / [post]
-func (c *DescSeguridadSocialController) Post() {
-	var v models.DescSeguridadSocial
+func (c *RangoEdadUpcController) Post() {
+	var v models.RangoEdadUpc
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddDescSeguridadSocial(&v); err == nil {
+		if _, err := models.AddRangoEdadUpc(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -49,15 +49,15 @@ func (c *DescSeguridadSocialController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get DescSeguridadSocial by id
+// @Description get RangoEdadUpc by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.DescSeguridadSocial
+// @Success 200 {object} models.RangoEdadUpc
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *DescSeguridadSocialController) GetOne() {
+func (c *RangoEdadUpcController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetDescSeguridadSocialById(id)
+	v, err := models.GetRangoEdadUpcById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -68,17 +68,17 @@ func (c *DescSeguridadSocialController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get DescSeguridadSocial
+// @Description get RangoEdadUpc
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.DescSeguridadSocial
+// @Success 200 {object} models.RangoEdadUpc
 // @Failure 403
 // @router / [get]
-func (c *DescSeguridadSocialController) GetAll() {
+func (c *RangoEdadUpcController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -120,7 +120,7 @@ func (c *DescSeguridadSocialController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllDescSeguridadSocial(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllRangoEdadUpc(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -131,18 +131,18 @@ func (c *DescSeguridadSocialController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the DescSeguridadSocial
+// @Description update the RangoEdadUpc
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.DescSeguridadSocial	true		"body for DescSeguridadSocial content"
-// @Success 200 {object} models.DescSeguridadSocial
+// @Param	body		body 	models.RangoEdadUpc	true		"body for RangoEdadUpc content"
+// @Success 200 {object} models.RangoEdadUpc
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *DescSeguridadSocialController) Put() {
+func (c *RangoEdadUpcController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.DescSeguridadSocial{Id: id}
+	v := models.RangoEdadUpc{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateDescSeguridadSocialById(&v); err == nil {
+		if err := models.UpdateRangoEdadUpcById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -155,15 +155,15 @@ func (c *DescSeguridadSocialController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the DescSeguridadSocial
+// @Description delete the RangoEdadUpc
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *DescSeguridadSocialController) Delete() {
+func (c *RangoEdadUpcController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteDescSeguridadSocial(id); err == nil {
+	if err := models.DeleteRangoEdadUpc(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

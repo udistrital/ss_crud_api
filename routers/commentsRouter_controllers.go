@@ -7,7 +7,7 @@ import (
 
 func init() {
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -15,7 +15,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -23,7 +23,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -31,7 +31,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -39,7 +39,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -47,7 +47,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -55,7 +55,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -63,7 +63,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -71,7 +71,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -79,7 +79,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DescSeguridadSocialDetalleController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -87,7 +87,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -95,7 +95,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -103,7 +103,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -111,7 +111,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -119,7 +119,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EdadUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -127,7 +127,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -135,7 +135,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -143,7 +143,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -151,7 +151,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -159,7 +159,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoSeguridadSocialController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoPagoController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -207,7 +207,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -215,7 +215,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -223,7 +223,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -231,7 +231,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -239,7 +239,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoZonaUpcController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
@@ -247,7 +247,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -255,7 +255,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -263,7 +263,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -271,7 +271,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -279,7 +279,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:UpcAdicionalController"],
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:ZonaUpcController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,

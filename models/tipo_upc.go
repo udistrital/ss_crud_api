@@ -10,11 +10,12 @@ import (
 )
 
 type TipoUpc struct {
-	Id            int          `orm:"column(id);pk;auto"`
-	Valor         int64        `orm:"column(valor)"`
-	Acuerdo       string       `orm:"column(acuerdo)"`
-	IdEdadUpc     *EdadUpc     `orm:"column(id_edad_upc);rel(fk)"`
-	IdTipoZonaUpc *TipoZonaUpc `orm:"column(id_tipo_zona_upc);rel(fk)"`
+	Id           int           `orm:"column(id);pk;auto"`
+	Valor        float64       `orm:"column(valor)"`
+	Vigencia     float64       `orm:"column(vigencia)"`
+	ZonaUpc      *ZonaUpc      `orm:"column(zona_upc);rel(fk)"`
+	RangoEdadUpc *RangoEdadUpc `orm:"column(rango_edad_upc);rel(fk)"`
+	Resolucion   string        `orm:"column(resolucion);null"`
 }
 
 func (t *TipoUpc) TableName() string {
@@ -54,7 +55,11 @@ func GetAllTipoUpc(query map[string]string, fields []string, sortby []string, or
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -96,7 +101,7 @@ func GetAllTipoUpc(query map[string]string, fields []string, sortby []string, or
 	}
 
 	var l []TipoUpc
-	qs = qs.OrderBy(sortFields...).RelatedSel("IdEdadUpc")
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {

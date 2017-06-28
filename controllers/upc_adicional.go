@@ -11,7 +11,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// UpcAdicionalController oprations for UpcAdicional
+// UpcAdicionalController operations for UpcAdicional
 type UpcAdicionalController struct {
 	beego.Controller
 }

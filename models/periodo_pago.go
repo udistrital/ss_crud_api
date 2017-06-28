@@ -9,51 +9,54 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type DescSeguridadSocial struct {
-	Id       int `orm:"column(id);pk;auto"`
-	Mes      int `orm:"column(mes)"`
-	Anio     int `orm:"column(anio)"`
-	IdNomina int `orm:"column(id_nomina)"`
+type PeriodoPago struct {
+	Id   int     `orm:"column(id);pk;auto"`
+	Mes  float64 `orm:"column(mes)"`
+	Anio float64 `orm:"column(anio)"`
 }
 
-func (t *DescSeguridadSocial) TableName() string {
-	return "desc_seguridad_social"
+func (t *PeriodoPago) TableName() string {
+	return "periodo_pago"
 }
 
 func init() {
-	orm.RegisterModel(new(DescSeguridadSocial))
+	orm.RegisterModel(new(PeriodoPago))
 }
 
-// AddDescSeguridadSocial insert a new DescSeguridadSocial into database and returns
+// AddPeriodoPago insert a new PeriodoPago into database and returns
 // last inserted Id on success.
-func AddDescSeguridadSocial(m *DescSeguridadSocial) (id int64, err error) {
+func AddPeriodoPago(m *PeriodoPago) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetDescSeguridadSocialById retrieves DescSeguridadSocial by Id. Returns error if
+// GetPeriodoPagoById retrieves PeriodoPago by Id. Returns error if
 // Id doesn't exist
-func GetDescSeguridadSocialById(id int) (v *DescSeguridadSocial, err error) {
+func GetPeriodoPagoById(id int) (v *PeriodoPago, err error) {
 	o := orm.NewOrm()
-	v = &DescSeguridadSocial{Id: id}
+	v = &PeriodoPago{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllDescSeguridadSocial retrieves all DescSeguridadSocial matches certain condition. Returns empty list if
+// GetAllPeriodoPago retrieves all PeriodoPago matches certain condition. Returns empty list if
 // no records exist
-func GetAllDescSeguridadSocial(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllPeriodoPago(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(DescSeguridadSocial))
+	qs := o.QueryTable(new(PeriodoPago))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string
@@ -94,7 +97,7 @@ func GetAllDescSeguridadSocial(query map[string]string, fields []string, sortby 
 		}
 	}
 
-	var l []DescSeguridadSocial
+	var l []PeriodoPago
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -117,11 +120,11 @@ func GetAllDescSeguridadSocial(query map[string]string, fields []string, sortby 
 	return nil, err
 }
 
-// UpdateDescSeguridadSocial updates DescSeguridadSocial by Id and returns error if
+// UpdatePeriodoPago updates PeriodoPago by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateDescSeguridadSocialById(m *DescSeguridadSocial) (err error) {
+func UpdatePeriodoPagoById(m *PeriodoPago) (err error) {
 	o := orm.NewOrm()
-	v := DescSeguridadSocial{Id: m.Id}
+	v := PeriodoPago{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -132,15 +135,15 @@ func UpdateDescSeguridadSocialById(m *DescSeguridadSocial) (err error) {
 	return
 }
 
-// DeleteDescSeguridadSocial deletes DescSeguridadSocial by Id and returns error if
+// DeletePeriodoPago deletes PeriodoPago by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteDescSeguridadSocial(id int) (err error) {
+func DeletePeriodoPago(id int) (err error) {
 	o := orm.NewOrm()
-	v := DescSeguridadSocial{Id: id}
+	v := PeriodoPago{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&DescSeguridadSocial{Id: id}); err == nil {
+		if num, err = o.Delete(&PeriodoPago{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
