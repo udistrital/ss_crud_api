@@ -8,8 +8,9 @@
 package routers
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/udistrital/ss_crud_api/controllers"
+
+	"github.com/astaxie/beego"
 )
 
 func init() {
@@ -54,6 +55,12 @@ func init() {
 		beego.NSNamespace("/tipo_upc",
 			beego.NSInclude(
 				&controllers.TipoUpcController{},
+			),
+		),
+
+		beego.NSNamespace("/aportante",
+			beego.NSInclude(
+				&controllers.AportanteController{},
 			),
 		),
 	)
