@@ -101,7 +101,7 @@ func GetAllPago(query map[string]string, fields []string, sortby []string, order
 	}
 
 	var l []Pago
-	qs = qs.OrderBy(sortFields...)
+	qs = qs.OrderBy(sortFields...).RelatedSel("PeriodoPago")
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
