@@ -152,3 +152,16 @@ func DeletePago(id int) (err error) {
 	}
 	return
 }
+
+type PagoAgrupado struct {
+	DetalleLiquidacion int `orm:"column(detalle_liquidacion)"`
+}
+
+func PagosPorPeriodoPago(idPeriodoPago int) (PagosAgrupados []PagoAgrupado, err error) {
+	o := orm.NewOrm()
+	_, err = o.Raw("SELECT detalle_liquidacion FROM administrativa.pago WHERE periodo_pago = ? group by detalle_liquidacion;", idPeriodoPago).QueryRows(&PagosAgrupados)
+	if err == nil {
+		return PagosAgrupados, nil
+	}
+	return
+}
