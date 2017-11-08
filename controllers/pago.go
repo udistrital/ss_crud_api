@@ -170,3 +170,22 @@ func (c *PagoController) Delete() {
 	}
 	c.ServeJSON()
 }
+
+// PagosPorPeriodoPago ...
+// @Title PagosPorPeriodoPago
+// @Description lista pagos agrupados por detalle liquidacion que corresponda a un periodo de pago.
+// @Param	idPeriodoPago	query	string	false	"id de periodo pago"
+// @Success 201 {object} models.Alert
+// @Failure 403 body is empty
+// @router /PagosPorPeriodoPago [get]
+func (c *PagoController) PagosPorPeriodoPago() {
+	idPeriodoPago, err1 := c.GetInt("idPeriodoPago")
+	if err1 == nil {
+		if data, err := models.PagosPorPeriodoPago(idPeriodoPago); err == nil {
+			c.Data["json"] = data
+		} else {
+			c.Data["json"] = models.Alert{Code: "E_0458", Body: "Not enough parameter", Type: "error"}
+		}
+	}
+	c.ServeJSON()
+}
