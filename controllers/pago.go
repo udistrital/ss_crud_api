@@ -23,6 +23,7 @@ func (c *PagoController) URLMapping() {
 	c.Mapping("GetAll", c.GetAll)
 	c.Mapping("Put", c.Put)
 	c.Mapping("Delete", c.Delete)
+	c.Mapping("GetPagos", c.GetPagos)
 }
 
 // Post ...
@@ -167,6 +168,25 @@ func (c *PagoController) Delete() {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
+	}
+	c.ServeJSON()
+}
+
+// GetPagos ...
+// @Title Get Pagos
+// @Description trae los pagos de seguridad de un periodo pago
+// @Param	idPeriodoPago		id del periodo_pago correspondiente
+// @Success 200 {object} models.PruebaPago
+// @Failure 403 :idPeriodoPago is empty
+// @router GetPagos/:idPeriodoPago [get]
+func (c *PagoController) GetPagos() {
+	idStr := c.Ctx.Input.Param(":idPeriodoPago")
+	id, _ := strconv.Atoi(idStr)
+	v, err := models.SumarPagos(id)
+	if err != nil {
+		c.Data["json"] = err.Error()
+	} else {
+		c.Data["json"] = v
 	}
 	c.ServeJSON()
 }

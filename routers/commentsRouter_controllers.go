@@ -95,6 +95,14 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
+		beego.ControllerComments{
+			Method: "GetPagos",
+			Router: `GetPagos/:idPeriodoPago`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PeriodoPagoController"],
 		beego.ControllerComments{
 			Method: "Post",

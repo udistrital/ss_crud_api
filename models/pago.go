@@ -18,6 +18,11 @@ type Pago struct {
 	PeriodoPago        *PeriodoPago `orm:"column(periodo_pago);rel(fk)"`
 }
 
+type TotalPagosUd struct {
+	TipoPago int
+	Total    float64
+}
+
 func (t *Pago) TableName() string {
 	return "pago"
 }
@@ -32,6 +37,26 @@ func AddPago(m *Pago) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
+}
+
+// SumarPagos devuelve el total de cada tipo de pago correspondiente a seguridad social
+// idPeriodoPago es el id del periodo_pago mediante el que se traen los registros
+func SumarPagos(idPeriodoPago int) (totalPagos []TotalPagosUd, err error) {
+	qb, _ := orm.NewQueryBuilder("mysql")
+
+	qb.Select("p.tipo_pago, SUM(p.valor) as total").
+		From("administrativa.pago p").
+		Where("p.periodo_pago = ?").
+		GroupBy("p.tipo_pago")
+
+	sql := qb.String()
+	o := orm.NewOrm()
+	o.Raw(sql, idPeriodoPago).QueryRows(&totalPagos)
+
+	if len(totalPagos) == 0 {
+		return nil, err
+	}
+	return totalPagos, nil
 }
 
 // GetPagoById retrieves Pago by Id. Returns error if
