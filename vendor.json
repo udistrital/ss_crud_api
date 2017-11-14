@@ -2,14 +2,9 @@
     "comment": "",
     "package": [
         {
-            "path": "github.com/mndrix/golog"
-        },
-        {
             "path": "github.com/astaxie/beego"
         },
         {
             "path": "github.com/udistrital/ss_crud_api/routers"
         }
     ]
-
-
