@@ -63,6 +63,12 @@ func init() {
 				&controllers.AportanteController{},
 			),
 		),
+
+		beego.NSNamespace("/tr_pago",
+			beego.NSInclude(
+				&controllers.TrPeriodoPagoController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
