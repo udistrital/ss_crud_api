@@ -9,48 +9,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type PeriodoPago struct {
-	Id                    int                    `orm:"column(id);pk;auto"`
-	Mes                   float64                `orm:"column(mes)"`
-	Anio                  float64                `orm:"column(anio)"`
-	Liquidacion           int                    `orm:"column(liquidacion)"`
-	TipoLiquidacion       string                 `orm:"column(tipo_liquidacion)"`
-	EstadoSeguridadSocial *EstadoSeguridadSocial `orm:"column(estado_seguridad_social);rel(fk)"`
+type EstadoSeguridadSocial struct {
+	Id                int     `orm:"column(id);pk"`
+	Nombre            string  `orm:"column(nombre)"`
+	Descripcion       string  `orm:"column(descripcion);null"`
+	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
+	Activo            bool    `orm:"column(activo)"`
+	NumeroOrden       float64 `orm:"column(numero_orden);null"`
 }
 
-func (t *PeriodoPago) TableName() string {
-	return "periodo_pago"
+func (t *EstadoSeguridadSocial) TableName() string {
+	return "estado_seguridad_social"
 }
 
 func init() {
-	orm.RegisterModel(new(PeriodoPago))
+	orm.RegisterModel(new(EstadoSeguridadSocial))
 }
 
-// AddPeriodoPago insert a new PeriodoPago into database and returns
+// AddEstadoSeguridadSocial insert a new EstadoSeguridadSocial into database and returns
 // last inserted Id on success.
-func AddPeriodoPago(m *PeriodoPago) (id int64, err error) {
+func AddEstadoSeguridadSocial(m *EstadoSeguridadSocial) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetPeriodoPagoById retrieves PeriodoPago by Id. Returns error if
+// GetEstadoSeguridadSocialById retrieves EstadoSeguridadSocial by Id. Returns error if
 // Id doesn't exist
-func GetPeriodoPagoById(id int) (v *PeriodoPago, err error) {
+func GetEstadoSeguridadSocialById(id int) (v *EstadoSeguridadSocial, err error) {
 	o := orm.NewOrm()
-	v = &PeriodoPago{Id: id}
+	v = &EstadoSeguridadSocial{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllPeriodoPago retrieves all PeriodoPago matches certain condition. Returns empty list if
+// GetAllEstadoSeguridadSocial retrieves all EstadoSeguridadSocial matches certain condition. Returns empty list if
 // no records exist
-func GetAllPeriodoPago(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllEstadoSeguridadSocial(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(PeriodoPago))
+	qs := o.QueryTable(new(EstadoSeguridadSocial))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -100,7 +100,7 @@ func GetAllPeriodoPago(query map[string]string, fields []string, sortby []string
 		}
 	}
 
-	var l []PeriodoPago
+	var l []EstadoSeguridadSocial
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -123,11 +123,11 @@ func GetAllPeriodoPago(query map[string]string, fields []string, sortby []string
 	return nil, err
 }
 
-// UpdatePeriodoPago updates PeriodoPago by Id and returns error if
+// UpdateEstadoSeguridadSocial updates EstadoSeguridadSocial by Id and returns error if
 // the record to be updated doesn't exist
-func UpdatePeriodoPagoById(m *PeriodoPago) (err error) {
+func UpdateEstadoSeguridadSocialById(m *EstadoSeguridadSocial) (err error) {
 	o := orm.NewOrm()
-	v := PeriodoPago{Id: m.Id}
+	v := EstadoSeguridadSocial{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -138,15 +138,15 @@ func UpdatePeriodoPagoById(m *PeriodoPago) (err error) {
 	return
 }
 
-// DeletePeriodoPago deletes PeriodoPago by Id and returns error if
+// DeleteEstadoSeguridadSocial deletes EstadoSeguridadSocial by Id and returns error if
 // the record to be deleted doesn't exist
-func DeletePeriodoPago(id int) (err error) {
+func DeleteEstadoSeguridadSocial(id int) (err error) {
 	o := orm.NewOrm()
-	v := PeriodoPago{Id: id}
+	v := EstadoSeguridadSocial{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&PeriodoPago{Id: id}); err == nil {
+		if num, err = o.Delete(&EstadoSeguridadSocial{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
