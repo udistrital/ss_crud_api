@@ -1,18 +1,14 @@
 package models
 
-import (
-	"fmt"
-
-	"github.com/astaxie/beego/orm"
-)
+import "github.com/astaxie/beego/orm"
 
 type TrPeriodoPago struct {
 	PeriodoPago *PeriodoPago
 	Pagos       []*Pago
 }
 
-// Transancción para el registro de pagos
-func RegistrarPagos(m *TrPeriodoPago) (alerta []string, err error) {
+// RegistrarPagos Transancción para el registro de pagos
+func RegistrarPagos(m *TrPeriodoPago) (alerta Alert, err error) {
 	o := orm.NewOrm()
 	o.Begin()
 
@@ -20,19 +16,17 @@ func RegistrarPagos(m *TrPeriodoPago) (alerta []string, err error) {
 		for _, v := range m.Pagos {
 			v.PeriodoPago = &PeriodoPago{Id: int(id)}
 			if _, err = o.Insert(v); err != nil {
-				fmt.Println("rollback")
+				alerta = Alert{Type: "error", Code: "E_PAGOS", Body: err}
 				o.Rollback()
-				alerta[0] = "error"
-				alerta = append(alerta, "Error registrado cada pago")
 				break
 			}
 		}
+		alerta = Alert{Type: "success", Code: "Ok", Body: err}
 		o.Commit()
-		alerta = append(alerta, "Ok")
 	} else {
+
+		alerta = Alert{Type: "error", Code: "E_PERIODO", Body: err}
 		o.Rollback()
-		alerta[0] = "error"
-		alerta = append(alerta, "Error grande")
 	}
 
 	return alerta, err
