@@ -126,6 +126,121 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /estado_seguridad_social/:
+    get:
+      tags:
+      - estado_seguridad_social
+      description: get EstadoSeguridadSocial
+      operationId: EstadoSeguridadSocialController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.EstadoSeguridadSocial'
+        "403":
+          description: ""
+    post:
+      tags:
+      - estado_seguridad_social
+      description: create EstadoSeguridadSocial
+      operationId: EstadoSeguridadSocialController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for EstadoSeguridadSocial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoSeguridadSocial'
+      responses:
+        "201":
+          description: '{int} models.EstadoSeguridadSocial'
+        "403":
+          description: body is empty
+  /estado_seguridad_social/{id}:
+    get:
+      tags:
+      - estado_seguridad_social
+      description: get EstadoSeguridadSocial by id
+      operationId: EstadoSeguridadSocialController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.EstadoSeguridadSocial'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - estado_seguridad_social
+      description: update the EstadoSeguridadSocial
+      operationId: EstadoSeguridadSocialController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for EstadoSeguridadSocial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.EstadoSeguridadSocial'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.EstadoSeguridadSocial'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - estado_seguridad_social
+      description: delete the EstadoSeguridadSocial
+      operationId: EstadoSeguridadSocialController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
   /pago/:
     get:
       tags:
@@ -739,6 +854,26 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /tr_periodo_pago/:
+    post:
+      tags:
+      - tr_periodo_pago
+      description: Registra los pagos asociados a un nuevo periodo_pago
+      operationId: TrPeriodoPagoController.TrPeriodoPago
+      parameters:
+      - in: body
+        name: body
+        description: body for TrPeriodoPago content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrPeriodoPago'
+      responses:
+        "201":
+          description: ""
+          schema:
+            $ref: '#/definitions/.msg'
+        "403":
+          description: :id is not int
   /upc_adicional/:
     get:
       tags:
@@ -976,12 +1111,14 @@ definitions:
     type: object
   .false:
     type: object
+  .msg:
+    type: object
   models.Alert:
     title: Alert
     type: object
     properties:
       Body:
-        $ref: '#/definitions/69.0xc4202b78f0.false'
+        $ref: '#/definitions/69.0xc4203199e0.false'
       Code:
         type: string
       Type:
@@ -1005,6 +1142,24 @@ definitions:
         type: string
       Nombre:
         type: string
+  models.EstadoSeguridadSocial:
+    title: EstadoSeguridadSocial
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
   models.Pago:
     title: Pago
     type: object
@@ -1033,6 +1188,8 @@ definitions:
       Anio:
         type: number
         format: double
+      EstadoSeguridadSocial:
+        $ref: '#/definitions/models.EstadoSeguridadSocial'
       Id:
         type: integer
         format: int64
@@ -1096,6 +1253,16 @@ definitions:
         format: double
       ZonaUpc:
         $ref: '#/definitions/models.ZonaUpc'
+  models.TrPeriodoPago:
+    title: TrPeriodoPago
+    type: object
+    properties:
+      Pagos:
+        type: array
+        items:
+          $ref: '#/definitions/models.Pago'
+      PeriodoPago:
+        $ref: '#/definitions/models.PeriodoPago'
   models.UpcAdicional:
     title: UpcAdicional
     type: object
@@ -1169,3 +1336,6 @@ tags:
 - name: aportante
   description: |
     AportanteController operations for Aportante
+- name: estado_seguridad_social
+  description: |
+    EstadoSeguridadSocialController operations for EstadoSeguridadSocial
