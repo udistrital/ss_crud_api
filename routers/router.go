@@ -8,12 +8,13 @@
 package routers
 
 import (
-	"github.com/udistrital/ss_crud_api/controllers"
-
 	"github.com/astaxie/beego"
+	"github.com/udistrital/auditoria"
+	"github.com/udistrital/ss_crud_api/controllers"
 )
 
 func init() {
+	auditoria.InitMiddleware()
 	ns := beego.NewNamespace("/v1",
 
 		beego.NSNamespace("/tipo_pago",

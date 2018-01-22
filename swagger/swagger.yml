@@ -1118,7 +1118,7 @@ definitions:
     type: object
     properties:
       Body:
-        $ref: '#/definitions/69.0xc4203199e0.false'
+        $ref: '#/definitions/69.0xc420324720.false'
       Code:
         type: string
       Type:
