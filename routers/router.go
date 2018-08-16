@@ -74,6 +74,11 @@ func init() {
 				&controllers.EstadoSeguridadSocialController{},
 			),
 		),
+		beego.NSNamespace("/beneficiarios",
+			beego.NSInclude(
+				&controllers.BeneficiariosController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }

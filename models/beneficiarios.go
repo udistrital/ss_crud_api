@@ -11,7 +11,7 @@ import (
 )
 
 type Beneficiarios struct {
-	Id                int       `orm:"column(id);pk"`
+	Id                int       `orm:"column(id);pk;auto"`
 	PersonaAsociada   int       `orm:"column(persona_asociada)"`
 	ParametroEstandar int       `orm:"column(parametro_estandar)"`
 	NumDocumento      string    `orm:"column(num_documento)"`

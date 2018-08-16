@@ -3,9 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/udistrital/ss_crud_api/models"
 	"strconv"
 	"strings"
+
+	"github.com/udistrital/ss_crud_api/models"
 
 	"github.com/astaxie/beego"
 )
@@ -34,13 +35,16 @@ func (c *BeneficiariosController) URLMapping() {
 func (c *BeneficiariosController) Post() {
 	var v models.Beneficiarios
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		beego.Info("beneficiario info: ", v)
 		if _, err := models.AddBeneficiarios(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
+			beego.Info("err1: ", err)
 			c.Data["json"] = err.Error()
 		}
 	} else {
+		beego.Info("err2: ", err)
 		c.Data["json"] = err.Error()
 	}
 	c.ServeJSON()
