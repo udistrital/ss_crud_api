@@ -343,6 +343,14 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoUpcController"],
+		beego.ControllerComments{
+			Method: "RegistrarTipo",
+			Router: `/registrar_valores`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TrPeriodoPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TrPeriodoPagoController"],
 		beego.ControllerComments{
 			Method: "Post",

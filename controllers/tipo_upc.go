@@ -9,6 +9,7 @@ import (
 	"github.com/udistrital/ss_crud_api/models"
 
 	"github.com/astaxie/beego"
+	"github.com/manucorporat/try"
 )
 
 // TipoUpcController operations for TipoUpc
@@ -168,5 +169,30 @@ func (c *TipoUpcController) Delete() {
 	} else {
 		c.Data["json"] = err.Error()
 	}
+	c.ServeJSON()
+}
+
+// RegistrarTipo ...
+// @Title RegistrarTipo
+// @Description RegistrarTipo the TipoUpc
+// @Param	id		path 	string	true		"RegistrarTipo"
+// @Success 200 {string} RegistrarTipo success!
+// @Failure 403 id is empty
+// @router /registrar_valores [post]
+func (c *TipoUpcController) RegistrarTipo() {
+	try.This(func() {
+		var v models.TrTipoUpc
+		if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
+			beego.Error(err)
+			panic(err.Error())
+		}
+		alerta, err := models.RegistrarTiposUpc(&v)
+		c.Data["json"] = alerta
+		if err != nil {
+			panic(err.Error())
+		}
+	}).Catch(func(e try.E) {
+		beego.Error("error en RegistrarTipo: ", e)
+	})
 	c.ServeJSON()
 }
