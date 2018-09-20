@@ -9,16 +9,15 @@ import (
 	"github.com/udistrital/ss_crud_api/models"
 
 	"github.com/astaxie/beego"
-	"github.com/manucorporat/try"
 )
 
-// TipoUpcController operations for TipoUpc
-type TipoUpcController struct {
+// BeneficiariosController operations for Beneficiarios
+type BeneficiariosController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *TipoUpcController) URLMapping() {
+func (c *BeneficiariosController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -28,21 +27,24 @@ func (c *TipoUpcController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create TipoUpc
-// @Param	body		body 	models.TipoUpc	true		"body for TipoUpc content"
-// @Success 201 {int} models.TipoUpc
+// @Description create Beneficiarios
+// @Param	body		body 	models.Beneficiarios	true		"body for Beneficiarios content"
+// @Success 201 {int} models.Beneficiarios
 // @Failure 403 body is empty
 // @router / [post]
-func (c *TipoUpcController) Post() {
-	var v models.TipoUpc
+func (c *BeneficiariosController) Post() {
+	var v models.Beneficiarios
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddTipoUpc(&v); err == nil {
+		beego.Info("beneficiario info: ", v)
+		if _, err := models.AddBeneficiarios(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
+			beego.Info("err1: ", err)
 			c.Data["json"] = err.Error()
 		}
 	} else {
+		beego.Info("err2: ", err)
 		c.Data["json"] = err.Error()
 	}
 	c.ServeJSON()
@@ -50,15 +52,15 @@ func (c *TipoUpcController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get TipoUpc by id
+// @Description get Beneficiarios by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.TipoUpc
+// @Success 200 {object} models.Beneficiarios
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *TipoUpcController) GetOne() {
+func (c *BeneficiariosController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetTipoUpcById(id)
+	v, err := models.GetBeneficiariosById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -69,17 +71,17 @@ func (c *TipoUpcController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get TipoUpc
+// @Description get Beneficiarios
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.TipoUpc
+// @Success 200 {object} models.Beneficiarios
 // @Failure 403
 // @router / [get]
-func (c *TipoUpcController) GetAll() {
+func (c *BeneficiariosController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -121,7 +123,7 @@ func (c *TipoUpcController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllTipoUpc(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllBeneficiarios(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -132,18 +134,18 @@ func (c *TipoUpcController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the TipoUpc
+// @Description update the Beneficiarios
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.TipoUpc	true		"body for TipoUpc content"
-// @Success 200 {object} models.TipoUpc
+// @Param	body		body 	models.Beneficiarios	true		"body for Beneficiarios content"
+// @Success 200 {object} models.Beneficiarios
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *TipoUpcController) Put() {
+func (c *BeneficiariosController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.TipoUpc{Id: id}
+	v := models.Beneficiarios{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateTipoUpcById(&v); err == nil {
+		if err := models.UpdateBeneficiariosById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -156,43 +158,18 @@ func (c *TipoUpcController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the TipoUpc
+// @Description delete the Beneficiarios
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *TipoUpcController) Delete() {
+func (c *BeneficiariosController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteTipoUpc(id); err == nil {
+	if err := models.DeleteBeneficiarios(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
 	}
-	c.ServeJSON()
-}
-
-// RegistrarTipo ...
-// @Title RegistrarTipo
-// @Description RegistrarTipo the TipoUpc
-// @Param	id		path 	string	true		"RegistrarTipo"
-// @Success 200 {string} RegistrarTipo success!
-// @Failure 403 id is empty
-// @router /registrar_valores [post]
-func (c *TipoUpcController) RegistrarTipo() {
-	try.This(func() {
-		var v models.TrTipoUpc
-		if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
-			beego.Error(err)
-			panic(err.Error())
-		}
-		alerta, err := models.RegistrarTiposUpc(&v)
-		c.Data["json"] = alerta
-		if err != nil {
-			panic(err.Error())
-		}
-	}).Catch(func(e try.E) {
-		beego.Error("error en RegistrarTipo: ", e)
-	})
 	c.ServeJSON()
 }

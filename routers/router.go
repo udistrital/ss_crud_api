@@ -9,12 +9,11 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	//"github.com/udistrital/auditoria"
 	"github.com/udistrital/ss_crud_api/controllers"
 )
 
 func init() {
-	//auditoria.InitMiddleware()
+	// auditoria.InitMiddleware()
 	ns := beego.NewNamespace("/v1",
 
 		beego.NSNamespace("/tipo_pago",
@@ -73,6 +72,11 @@ func init() {
 		beego.NSNamespace("/estado_seguridad_social",
 			beego.NSInclude(
 				&controllers.EstadoSeguridadSocialController{},
+			),
+		),
+		beego.NSNamespace("/beneficiarios",
+			beego.NSInclude(
+				&controllers.BeneficiariosController{},
 			),
 		),
 	)
