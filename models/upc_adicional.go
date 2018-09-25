@@ -12,7 +12,7 @@ import (
 
 type UpcAdicional struct {
 	Id                int       `orm:"column(id);pk;auto"`
-	PersonaAsociada   int       `orm:"column(persona_asociada)"`
+	PersonaAsociada   string    `orm:"column(persona_asociada)"`
 	ParametroEstandar int       `orm:"column(parametro_estandar)"`
 	NumDocumento      string    `orm:"column(num_documento)"`
 	TipoUpc           *TipoUpc  `orm:"column(tipo_upc);rel(fk)"`
@@ -107,7 +107,7 @@ func GetAllUpcAdicional(query map[string]string, fields []string, sortby []strin
 	}
 
 	var l []UpcAdicional
-	qs = qs.OrderBy(sortFields...)
+	qs = qs.OrderBy(sortFields...).RelatedSel("tipo_upc")
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
