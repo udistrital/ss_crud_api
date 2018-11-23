@@ -31,7 +31,7 @@ func (c *DetalleNovedadSeguridadSocialController) URLMapping() {
 // @Description create DetalleNovedadSeguridadSocial
 // @Param	body		body 	models.DetalleNovedadSeguridadSocial	true		"body for DetalleNovedadSeguridadSocial content"
 // @Success 201 {int} models.DetalleNovedadSeguridadSocial
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *DetalleNovedadSeguridadSocialController) Post() {
 	var v models.DetalleNovedadSeguridadSocial
@@ -40,10 +40,12 @@ func (c *DetalleNovedadSeguridadSocialController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -53,14 +55,15 @@ func (c *DetalleNovedadSeguridadSocialController) Post() {
 // @Description get DetalleNovedadSeguridadSocial by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.DetalleNovedadSeguridadSocial
-// @Failure 403 :id is empty
+// @Failure 404 not found resource
 // @router /:id [get]
 func (c *DetalleNovedadSeguridadSocialController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetDetalleNovedadSeguridadSocialById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
 		c.Data["json"] = v
 	}
@@ -77,7 +80,7 @@ func (c *DetalleNovedadSeguridadSocialController) GetOne() {
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.DetalleNovedadSeguridadSocial
-// @Failure 403
+// @Failure 404 not found resource
 // @router / [get]
 func (c *DetalleNovedadSeguridadSocialController) GetAll() {
 	var fields []string
@@ -123,8 +126,12 @@ func (c *DetalleNovedadSeguridadSocialController) GetAll() {
 
 	l, err := models.GetAllDetalleNovedadSeguridadSocial(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
@@ -136,7 +143,7 @@ func (c *DetalleNovedadSeguridadSocialController) GetAll() {
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.DetalleNovedadSeguridadSocial	true		"body for DetalleNovedadSeguridadSocial content"
 // @Success 200 {object} models.DetalleNovedadSeguridadSocial
-// @Failure 403 :id is not int
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
 func (c *DetalleNovedadSeguridadSocialController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
@@ -144,12 +151,14 @@ func (c *DetalleNovedadSeguridadSocialController) Put() {
 	v := models.DetalleNovedadSeguridadSocial{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateDetalleNovedadSeguridadSocialById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -159,15 +168,16 @@ func (c *DetalleNovedadSeguridadSocialController) Put() {
 // @Description delete the DetalleNovedadSeguridadSocial
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
 func (c *DetalleNovedadSeguridadSocialController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteDetalleNovedadSeguridadSocial(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }

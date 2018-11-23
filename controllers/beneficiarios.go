@@ -30,7 +30,7 @@ func (c *BeneficiariosController) URLMapping() {
 // @Description create Beneficiarios
 // @Param	body		body 	models.Beneficiarios	true		"body for Beneficiarios content"
 // @Success 201 {int} models.Beneficiarios
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *BeneficiariosController) Post() {
 	var v models.Beneficiarios
@@ -41,11 +41,13 @@ func (c *BeneficiariosController) Post() {
 			c.Data["json"] = v
 		} else {
 			beego.Info("err1: ", err)
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
 		beego.Info("err2: ", err)
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -55,14 +57,15 @@ func (c *BeneficiariosController) Post() {
 // @Description get Beneficiarios by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Beneficiarios
-// @Failure 403 :id is empty
+// @Failure 404 not found resource
 // @router /:id [get]
 func (c *BeneficiariosController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetBeneficiariosById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
 		c.Data["json"] = v
 	}
@@ -79,7 +82,7 @@ func (c *BeneficiariosController) GetOne() {
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.Beneficiarios
-// @Failure 403
+// @Failure 404 not found resource
 // @router / [get]
 func (c *BeneficiariosController) GetAll() {
 	var fields []string
@@ -125,8 +128,12 @@ func (c *BeneficiariosController) GetAll() {
 
 	l, err := models.GetAllBeneficiarios(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
@@ -138,7 +145,7 @@ func (c *BeneficiariosController) GetAll() {
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.Beneficiarios	true		"body for Beneficiarios content"
 // @Success 200 {object} models.Beneficiarios
-// @Failure 403 :id is not int
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
 func (c *BeneficiariosController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
@@ -146,12 +153,14 @@ func (c *BeneficiariosController) Put() {
 	v := models.Beneficiarios{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateBeneficiariosById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			beego.Error(err)
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
@@ -161,15 +170,16 @@ func (c *BeneficiariosController) Put() {
 // @Description delete the Beneficiarios
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
 func (c *BeneficiariosController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteBeneficiarios(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = err.Error()
+		beego.Error(err)
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }
