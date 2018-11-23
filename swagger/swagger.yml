@@ -48,8 +48,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Aportante'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - aportante
@@ -65,8 +65,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Aportante'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /aportante/{id}:
     get:
       tags:
@@ -84,8 +84,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Aportante'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - aportante
@@ -108,8 +108,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Aportante'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - aportante
@@ -124,8 +124,256 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /beneficiarios/:
+    get:
+      tags:
+      - beneficiarios
+      description: get Beneficiarios
+      operationId: BeneficiariosController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Beneficiarios'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - beneficiarios
+      description: create Beneficiarios
+      operationId: BeneficiariosController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Beneficiarios content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Beneficiarios'
+      responses:
+        "201":
+          description: '{int} models.Beneficiarios'
+        "400":
+          description: the request contains incorrect syntax
+  /beneficiarios/{id}:
+    get:
+      tags:
+      - beneficiarios
+      description: get Beneficiarios by id
+      operationId: BeneficiariosController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Beneficiarios'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - beneficiarios
+      description: update the Beneficiarios
+      operationId: BeneficiariosController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Beneficiarios content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Beneficiarios'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Beneficiarios'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - beneficiarios
+      description: delete the Beneficiarios
+      operationId: BeneficiariosController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /detalle_novedad_seguridad_social/:
+    get:
+      tags:
+      - detalle_novedad_seguridad_social
+      description: get DetalleNovedadSeguridadSocial
+      operationId: DetalleNovedadSeguridadSocialController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DetalleNovedadSeguridadSocial'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - detalle_novedad_seguridad_social
+      description: create DetalleNovedadSeguridadSocial
+      operationId: DetalleNovedadSeguridadSocialController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for DetalleNovedadSeguridadSocial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DetalleNovedadSeguridadSocial'
+      responses:
+        "201":
+          description: '{int} models.DetalleNovedadSeguridadSocial'
+        "400":
+          description: the request contains incorrect syntax
+  /detalle_novedad_seguridad_social/{id}:
+    get:
+      tags:
+      - detalle_novedad_seguridad_social
+      description: get DetalleNovedadSeguridadSocial by id
+      operationId: DetalleNovedadSeguridadSocialController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DetalleNovedadSeguridadSocial'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - detalle_novedad_seguridad_social
+      description: update the DetalleNovedadSeguridadSocial
+      operationId: DetalleNovedadSeguridadSocialController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for DetalleNovedadSeguridadSocial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DetalleNovedadSeguridadSocial'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DetalleNovedadSeguridadSocial'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - detalle_novedad_seguridad_social
+      description: delete the DetalleNovedadSeguridadSocial
+      operationId: DetalleNovedadSeguridadSocialController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /detalle_novedad_seguridad_social/tr_registrar_detalle:
+    post:
+      tags:
+      - detalle_novedad_seguridad_social
+      description: create TrRegistrarDetalle
+      operationId: DetalleNovedadSeguridadSocialController.TrRegistrarDetalle
+      parameters:
+      - in: body
+        name: body
+        description: body for DetalleNovedadSeguridadSocial content
+        required: true
+        schema:
+          $ref: '#/definitions/.interface{}'
+      responses:
+        "201":
+          description: '{int} models.Alert'
         "403":
-          description: id is empty
+          description: body is empty
   /estado_seguridad_social/:
     get:
       tags:
@@ -163,8 +411,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoSeguridadSocial'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - estado_seguridad_social
@@ -180,8 +428,8 @@ paths:
       responses:
         "201":
           description: '{int} models.EstadoSeguridadSocial'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /estado_seguridad_social/{id}:
     get:
       tags:
@@ -199,8 +447,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoSeguridadSocial'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - estado_seguridad_social
@@ -223,8 +471,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.EstadoSeguridadSocial'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - estado_seguridad_social
@@ -239,8 +487,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /pago/:
     get:
       tags:
@@ -278,8 +526,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Pago'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - pago
@@ -295,8 +543,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Pago'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /pago/{id}:
     get:
       tags:
@@ -314,8 +562,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Pago'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - pago
@@ -338,8 +586,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Pago'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - pago
@@ -354,8 +602,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /pago/PagosPorPeriodoPago:
     get:
       tags:
@@ -431,8 +679,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.PeriodoPago'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - periodo_pago
@@ -448,8 +696,8 @@ paths:
       responses:
         "201":
           description: '{int} models.PeriodoPago'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /periodo_pago/{id}:
     get:
       tags:
@@ -467,8 +715,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.PeriodoPago'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - periodo_pago
@@ -491,8 +739,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.PeriodoPago'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - periodo_pago
@@ -507,8 +755,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /rango_edad_upc/:
     get:
       tags:
@@ -546,8 +794,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RangoEdadUpc'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - rango_edad_upc
@@ -563,8 +811,8 @@ paths:
       responses:
         "201":
           description: '{int} models.RangoEdadUpc'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /rango_edad_upc/{id}:
     get:
       tags:
@@ -582,8 +830,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RangoEdadUpc'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - rango_edad_upc
@@ -606,8 +854,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.RangoEdadUpc'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - rango_edad_upc
@@ -622,8 +870,123 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
+  /tipo_novedad_seguridad_social/:
+    get:
+      tags:
+      - tipo_novedad_seguridad_social
+      description: get TipoNovedadSeguridadSocial
+      operationId: TipoNovedadSeguridadSocialController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoNovedadSeguridadSocial'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - tipo_novedad_seguridad_social
+      description: create TipoNovedadSeguridadSocial
+      operationId: TipoNovedadSeguridadSocialController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for TipoNovedadSeguridadSocial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoNovedadSeguridadSocial'
+      responses:
+        "201":
+          description: '{int} models.TipoNovedadSeguridadSocial'
+        "400":
+          description: the request contains incorrect syntax
+  /tipo_novedad_seguridad_social/{id}:
+    get:
+      tags:
+      - tipo_novedad_seguridad_social
+      description: get TipoNovedadSeguridadSocial by id
+      operationId: TipoNovedadSeguridadSocialController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoNovedadSeguridadSocial'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - tipo_novedad_seguridad_social
+      description: update the TipoNovedadSeguridadSocial
+      operationId: TipoNovedadSeguridadSocialController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for TipoNovedadSeguridadSocial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoNovedadSeguridadSocial'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoNovedadSeguridadSocial'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - tipo_novedad_seguridad_social
+      description: delete the TipoNovedadSeguridadSocial
+      operationId: TipoNovedadSeguridadSocialController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
   /tipo_pago/:
     get:
       tags:
@@ -661,8 +1024,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoPago'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - tipo_pago
@@ -678,8 +1041,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TipoPago'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tipo_pago/{id}:
     get:
       tags:
@@ -697,8 +1060,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoPago'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - tipo_pago
@@ -721,8 +1084,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoPago'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - tipo_pago
@@ -737,8 +1100,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /tipo_upc/:
     get:
       tags:
@@ -776,8 +1139,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoUpc'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - tipo_upc
@@ -793,8 +1156,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TipoUpc'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tipo_upc/{id}:
     get:
       tags:
@@ -812,8 +1175,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoUpc'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - tipo_upc
@@ -836,8 +1199,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoUpc'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - tipo_upc
@@ -852,6 +1215,23 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /tipo_upc/registrar_valores:
+    post:
+      tags:
+      - tipo_upc
+      description: RegistrarTipo the TipoUpc
+      operationId: TipoUpcController.RegistrarTipo
+      parameters:
+      - in: path
+        name: id
+        description: RegistrarTipo
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} RegistrarTipo success!'
         "403":
           description: id is empty
   /tr_periodo_pago/:
@@ -911,8 +1291,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.UpcAdicional'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - upc_adicional
@@ -928,8 +1308,8 @@ paths:
       responses:
         "201":
           description: '{int} models.UpcAdicional'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /upc_adicional/{id}:
     get:
       tags:
@@ -947,8 +1327,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.UpcAdicional'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - upc_adicional
@@ -971,8 +1351,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.UpcAdicional'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - upc_adicional
@@ -987,8 +1367,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /zona_upc/:
     get:
       tags:
@@ -1026,8 +1406,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ZonaUpc'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - zona_upc
@@ -1043,8 +1423,8 @@ paths:
       responses:
         "201":
           description: '{int} models.ZonaUpc'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /zona_upc/{id}:
     get:
       tags:
@@ -1062,8 +1442,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ZonaUpc'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - zona_upc
@@ -1086,8 +1466,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ZonaUpc'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - zona_upc
@@ -1102,14 +1482,16 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
 definitions:
   .PruebaPago:
     type: object
   .del:
     type: object
   .false:
+    type: object
+  .interface{}:
     type: object
   .msg:
     type: object
@@ -1118,7 +1500,7 @@ definitions:
     type: object
     properties:
       Body:
-        $ref: '#/definitions/69.0xc420324720.false'
+        $ref: '#/definitions/69.0xc4203c3e30.false'
       Code:
         type: string
       Type:
@@ -1142,6 +1524,51 @@ definitions:
         type: string
       Nombre:
         type: string
+  models.Beneficiarios:
+    title: Beneficiarios
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      FechaFin:
+        type: string
+        format: string
+      FechaInicio:
+        type: string
+        format: string
+      FechaNacimiento:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      NumDocumento:
+        type: string
+      ParametroEstandar:
+        type: integer
+        format: int64
+      PersonaAsociada:
+        type: string
+      PrimerApellido:
+        type: string
+      PrimerNombre:
+        type: string
+      SegundoApellido:
+        type: string
+      SegundoNombre:
+        type: string
+  models.DetalleNovedadSeguridadSocial:
+    title: DetalleNovedadSeguridadSocial
+    type: object
+    properties:
+      ConceptoNominaPorPersona:
+        type: integer
+        format: int64
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
   models.EstadoSeguridadSocial:
     title: EstadoSeguridadSocial
     type: object
@@ -1216,6 +1643,15 @@ definitions:
       Id:
         type: integer
         format: int64
+  models.TipoNovedadSeguridadSocial:
+    title: TipoNovedadSeguridadSocial
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int64
+      NombreConcepto:
+        type: string
   models.TipoPago:
     title: TipoPago
     type: object
@@ -1249,8 +1685,8 @@ definitions:
         type: number
         format: double
       Vigencia:
-        type: number
-        format: double
+        type: integer
+        format: int64
       ZonaUpc:
         $ref: '#/definitions/models.ZonaUpc'
   models.TrPeriodoPago:
@@ -1269,7 +1705,7 @@ definitions:
     properties:
       Activo:
         type: boolean
-      FechaDeNacimiento:
+      FechaNacimiento:
         type: string
         format: string
       Id:
@@ -1281,8 +1717,7 @@ definitions:
         type: integer
         format: int64
       PersonaAsociada:
-        type: integer
-        format: int64
+        type: string
       PrimerApellido:
         type: string
       PrimerNombre:
@@ -1339,3 +1774,12 @@ tags:
 - name: estado_seguridad_social
   description: |
     EstadoSeguridadSocialController operations for EstadoSeguridadSocial
+- name: beneficiarios
+  description: |
+    BeneficiariosController operations for Beneficiarios
+- name: detalle_novedad_seguridad_social
+  description: |
+    DetalleNovedadSeguridadSocialController operations for DetalleNovedadSeguridadSocial
+- name: tipo_novedad_seguridad_social
+  description: |
+    TipoNovedadSeguridadSocialController operations for TipoNovedadSeguridadSocial

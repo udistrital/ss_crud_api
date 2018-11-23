@@ -67,8 +67,8 @@
                             "$ref": "#/definitions/models.Aportante"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -93,8 +93,8 @@
                     "201": {
                         "description": "{int} models.Aportante"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -122,8 +122,8 @@
                             "$ref": "#/definitions/models.Aportante"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -158,8 +158,8 @@
                             "$ref": "#/definitions/models.Aportante"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -182,8 +182,382 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/beneficiarios/": {
+            "get": {
+                "tags": [
+                    "beneficiarios"
+                ],
+                "description": "get Beneficiarios",
+                "operationId": "BeneficiariosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Beneficiarios"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "beneficiarios"
+                ],
+                "description": "create Beneficiarios",
+                "operationId": "BeneficiariosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Beneficiarios content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Beneficiarios"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Beneficiarios"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/beneficiarios/{id}": {
+            "get": {
+                "tags": [
+                    "beneficiarios"
+                ],
+                "description": "get Beneficiarios by id",
+                "operationId": "BeneficiariosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Beneficiarios"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "beneficiarios"
+                ],
+                "description": "update the Beneficiarios",
+                "operationId": "BeneficiariosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Beneficiarios content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Beneficiarios"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Beneficiarios"
+                        }
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "beneficiarios"
+                ],
+                "description": "delete the Beneficiarios",
+                "operationId": "BeneficiariosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/detalle_novedad_seguridad_social/": {
+            "get": {
+                "tags": [
+                    "detalle_novedad_seguridad_social"
+                ],
+                "description": "get DetalleNovedadSeguridadSocial",
+                "operationId": "DetalleNovedadSeguridadSocialController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DetalleNovedadSeguridadSocial"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "detalle_novedad_seguridad_social"
+                ],
+                "description": "create DetalleNovedadSeguridadSocial",
+                "operationId": "DetalleNovedadSeguridadSocialController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DetalleNovedadSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DetalleNovedadSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DetalleNovedadSeguridadSocial"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/detalle_novedad_seguridad_social/tr_registrar_detalle": {
+            "post": {
+                "tags": [
+                    "detalle_novedad_seguridad_social"
+                ],
+                "description": "create TrRegistrarDetalle",
+                "operationId": "DetalleNovedadSeguridadSocialController.TrRegistrarDetalle",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DetalleNovedadSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.interface{}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Alert"
+                    },
                     "403": {
-                        "description": "id is empty"
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/detalle_novedad_seguridad_social/{id}": {
+            "get": {
+                "tags": [
+                    "detalle_novedad_seguridad_social"
+                ],
+                "description": "get DetalleNovedadSeguridadSocial by id",
+                "operationId": "DetalleNovedadSeguridadSocialController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DetalleNovedadSeguridadSocial"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "detalle_novedad_seguridad_social"
+                ],
+                "description": "update the DetalleNovedadSeguridadSocial",
+                "operationId": "DetalleNovedadSeguridadSocialController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DetalleNovedadSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DetalleNovedadSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DetalleNovedadSeguridadSocial"
+                        }
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "detalle_novedad_seguridad_social"
+                ],
+                "description": "delete the DetalleNovedadSeguridadSocial",
+                "operationId": "DetalleNovedadSeguridadSocialController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -240,8 +614,8 @@
                             "$ref": "#/definitions/models.EstadoSeguridadSocial"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -266,8 +640,8 @@
                     "201": {
                         "description": "{int} models.EstadoSeguridadSocial"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -295,8 +669,8 @@
                             "$ref": "#/definitions/models.EstadoSeguridadSocial"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -331,8 +705,8 @@
                             "$ref": "#/definitions/models.EstadoSeguridadSocial"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -355,8 +729,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -413,8 +787,8 @@
                             "$ref": "#/definitions/models.Pago"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -439,8 +813,8 @@
                     "201": {
                         "description": "{int} models.Pago"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -496,8 +870,8 @@
                             "$ref": "#/definitions/models.Pago"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -532,8 +906,8 @@
                             "$ref": "#/definitions/models.Pago"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -556,8 +930,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -644,8 +1018,8 @@
                             "$ref": "#/definitions/models.PeriodoPago"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -670,8 +1044,8 @@
                     "201": {
                         "description": "{int} models.PeriodoPago"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -699,8 +1073,8 @@
                             "$ref": "#/definitions/models.PeriodoPago"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -735,8 +1109,8 @@
                             "$ref": "#/definitions/models.PeriodoPago"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -759,8 +1133,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -817,8 +1191,8 @@
                             "$ref": "#/definitions/models.RangoEdadUpc"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -843,8 +1217,8 @@
                     "201": {
                         "description": "{int} models.RangoEdadUpc"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -872,8 +1246,8 @@
                             "$ref": "#/definitions/models.RangoEdadUpc"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -908,8 +1282,8 @@
                             "$ref": "#/definitions/models.RangoEdadUpc"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -932,8 +1306,181 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/tipo_novedad_seguridad_social/": {
+            "get": {
+                "tags": [
+                    "tipo_novedad_seguridad_social"
+                ],
+                "description": "get TipoNovedadSeguridadSocial",
+                "operationId": "TipoNovedadSeguridadSocialController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoNovedadSeguridadSocial"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_novedad_seguridad_social"
+                ],
+                "description": "create TipoNovedadSeguridadSocial",
+                "operationId": "TipoNovedadSeguridadSocialController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoNovedadSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoNovedadSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoNovedadSeguridadSocial"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/tipo_novedad_seguridad_social/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_novedad_seguridad_social"
+                ],
+                "description": "get TipoNovedadSeguridadSocial by id",
+                "operationId": "TipoNovedadSeguridadSocialController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoNovedadSeguridadSocial"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_novedad_seguridad_social"
+                ],
+                "description": "update the TipoNovedadSeguridadSocial",
+                "operationId": "TipoNovedadSeguridadSocialController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoNovedadSeguridadSocial content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoNovedadSeguridadSocial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoNovedadSeguridadSocial"
+                        }
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_novedad_seguridad_social"
+                ],
+                "description": "delete the TipoNovedadSeguridadSocial",
+                "operationId": "TipoNovedadSeguridadSocialController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -990,8 +1537,8 @@
                             "$ref": "#/definitions/models.TipoPago"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1016,8 +1563,8 @@
                     "201": {
                         "description": "{int} models.TipoPago"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -1045,8 +1592,8 @@
                             "$ref": "#/definitions/models.TipoPago"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1081,8 +1628,8 @@
                             "$ref": "#/definitions/models.TipoPago"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -1105,8 +1652,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -1163,8 +1710,8 @@
                             "$ref": "#/definitions/models.TipoUpc"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1189,8 +1736,34 @@
                     "201": {
                         "description": "{int} models.TipoUpc"
                     },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/tipo_upc/registrar_valores": {
+            "post": {
+                "tags": [
+                    "tipo_upc"
+                ],
+                "description": "RegistrarTipo the TipoUpc",
+                "operationId": "TipoUpcController.RegistrarTipo",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "RegistrarTipo",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} RegistrarTipo success!"
+                    },
                     "403": {
-                        "description": "body is empty"
+                        "description": "id is empty"
                     }
                 }
             }
@@ -1218,8 +1791,8 @@
                             "$ref": "#/definitions/models.TipoUpc"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1254,8 +1827,8 @@
                             "$ref": "#/definitions/models.TipoUpc"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -1278,8 +1851,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -1367,8 +1940,8 @@
                             "$ref": "#/definitions/models.UpcAdicional"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1393,8 +1966,8 @@
                     "201": {
                         "description": "{int} models.UpcAdicional"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -1422,8 +1995,8 @@
                             "$ref": "#/definitions/models.UpcAdicional"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1458,8 +2031,8 @@
                             "$ref": "#/definitions/models.UpcAdicional"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -1482,8 +2055,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -1540,8 +2113,8 @@
                             "$ref": "#/definitions/models.ZonaUpc"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1566,8 +2139,8 @@
                     "201": {
                         "description": "{int} models.ZonaUpc"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -1595,8 +2168,8 @@
                             "$ref": "#/definitions/models.ZonaUpc"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1631,8 +2204,8 @@
                             "$ref": "#/definitions/models.ZonaUpc"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -1655,8 +2228,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -1672,6 +2245,9 @@
         ".false": {
             "type": "object"
         },
+        ".interface{}": {
+            "type": "object"
+        },
         ".msg": {
             "type": "object"
         },
@@ -1680,7 +2256,7 @@
             "type": "object",
             "properties": {
                 "Body": {
-                    "$ref": "#/definitions/69.0xc420324720.false"
+                    "$ref": "#/definitions/69.0xc4203c3e30.false"
                 },
                 "Code": {
                     "type": "string"
@@ -1715,6 +2291,70 @@
                 },
                 "Nombre": {
                     "type": "string"
+                }
+            }
+        },
+        "models.Beneficiarios": {
+            "title": "Beneficiarios",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "FechaFin": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "FechaInicio": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "FechaNacimiento": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NumDocumento": {
+                    "type": "string"
+                },
+                "ParametroEstandar": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "PersonaAsociada": {
+                    "type": "string"
+                },
+                "PrimerApellido": {
+                    "type": "string"
+                },
+                "PrimerNombre": {
+                    "type": "string"
+                },
+                "SegundoApellido": {
+                    "type": "string"
+                },
+                "SegundoNombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.DetalleNovedadSeguridadSocial": {
+            "title": "DetalleNovedadSeguridadSocial",
+            "type": "object",
+            "properties": {
+                "ConceptoNominaPorPersona": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
@@ -1822,6 +2462,19 @@
                 }
             }
         },
+        "models.TipoNovedadSeguridadSocial": {
+            "title": "TipoNovedadSeguridadSocial",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NombreConcepto": {
+                    "type": "string"
+                }
+            }
+        },
         "models.TipoPago": {
             "title": "TipoPago",
             "type": "object",
@@ -1867,8 +2520,8 @@
                     "format": "double"
                 },
                 "Vigencia": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "ZonaUpc": {
                     "$ref": "#/definitions/models.ZonaUpc"
@@ -1897,7 +2550,7 @@
                 "Activo": {
                     "type": "boolean"
                 },
-                "FechaDeNacimiento": {
+                "FechaNacimiento": {
                     "type": "string",
                     "format": "string"
                 },
@@ -1913,8 +2566,7 @@
                     "format": "int64"
                 },
                 "PersonaAsociada": {
-                    "type": "integer",
-                    "format": "int64"
+                    "type": "string"
                 },
                 "PrimerApellido": {
                     "type": "string"
@@ -1996,6 +2648,18 @@
         {
             "name": "estado_seguridad_social",
             "description": "EstadoSeguridadSocialController operations for EstadoSeguridadSocial\n"
+        },
+        {
+            "name": "beneficiarios",
+            "description": "BeneficiariosController operations for Beneficiarios\n"
+        },
+        {
+            "name": "detalle_novedad_seguridad_social",
+            "description": "DetalleNovedadSeguridadSocialController operations for DetalleNovedadSeguridadSocial\n"
+        },
+        {
+            "name": "tipo_novedad_seguridad_social",
+            "description": "TipoNovedadSeguridadSocialController operations for TipoNovedadSeguridadSocial\n"
         }
     ]
 }
