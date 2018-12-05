@@ -5,58 +5,48 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type UpcAdicional struct {
-	Id                int       `orm:"column(id);pk;auto"`
-	PersonaAsociada   string    `orm:"column(persona_asociada)"`
-	ParametroEstandar int       `orm:"column(parametro_estandar)"`
-	NumDocumento      string    `orm:"column(num_documento)"`
-	TipoUpc           *TipoUpc  `orm:"column(tipo_upc);rel(fk)"`
-	PrimerNombre      string    `orm:"column(primer_nombre)"`
-	SegundoNombre     string    `orm:"column(segundo_nombre);null"`
-	PrimerApellido    string    `orm:"column(primer_apellido)"`
-	SegundoApellido   string    `orm:"column(segundo_apellido);null"`
-	FechaNacimiento   time.Time `orm:"column(fecha_de_nacimiento);type(date)"`
-	Activo            bool      `orm:"column(activo);null"`
+type TipoNovedadSeguridadSocial struct {
+	Id             int    `orm:"column(id);pk"`
+	NombreConcepto string `orm:"column(nombre_concepto)"`
 }
 
-func (t *UpcAdicional) TableName() string {
-	return "upc_adicional"
+func (t *TipoNovedadSeguridadSocial) TableName() string {
+	return "tipo_novedad_seguridad_social"
 }
 
 func init() {
-	orm.RegisterModel(new(UpcAdicional))
+	orm.RegisterModel(new(TipoNovedadSeguridadSocial))
 }
 
-// AddUpcAdicional insert a new UpcAdicional into database and returns
+// AddTipoNovedadSeguridadSocial insert a new TipoNovedadSeguridadSocial into database and returns
 // last inserted Id on success.
-func AddUpcAdicional(m *UpcAdicional) (id int64, err error) {
+func AddTipoNovedadSeguridadSocial(m *TipoNovedadSeguridadSocial) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetUpcAdicionalById retrieves UpcAdicional by Id. Returns error if
+// GetTipoNovedadSeguridadSocialById retrieves TipoNovedadSeguridadSocial by Id. Returns error if
 // Id doesn't exist
-func GetUpcAdicionalById(id int) (v *UpcAdicional, err error) {
+func GetTipoNovedadSeguridadSocialById(id int) (v *TipoNovedadSeguridadSocial, err error) {
 	o := orm.NewOrm()
-	v = &UpcAdicional{Id: id}
+	v = &TipoNovedadSeguridadSocial{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllUpcAdicional retrieves all UpcAdicional matches certain condition. Returns empty list if
+// GetAllTipoNovedadSeguridadSocial retrieves all TipoNovedadSeguridadSocial matches certain condition. Returns empty list if
 // no records exist
-func GetAllUpcAdicional(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllTipoNovedadSeguridadSocial(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(UpcAdicional))
+	qs := o.QueryTable(new(TipoNovedadSeguridadSocial))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -106,8 +96,8 @@ func GetAllUpcAdicional(query map[string]string, fields []string, sortby []strin
 		}
 	}
 
-	var l []UpcAdicional
-	qs = qs.OrderBy(sortFields...).RelatedSel("tipo_upc")
+	var l []TipoNovedadSeguridadSocial
+	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
 			for _, v := range l {
@@ -129,11 +119,11 @@ func GetAllUpcAdicional(query map[string]string, fields []string, sortby []strin
 	return nil, err
 }
 
-// UpdateUpcAdicional updates UpcAdicional by Id and returns error if
+// UpdateTipoNovedadSeguridadSocial updates TipoNovedadSeguridadSocial by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateUpcAdicionalById(m *UpcAdicional) (err error) {
+func UpdateTipoNovedadSeguridadSocialById(m *TipoNovedadSeguridadSocial) (err error) {
 	o := orm.NewOrm()
-	v := UpcAdicional{Id: m.Id}
+	v := TipoNovedadSeguridadSocial{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -144,15 +134,15 @@ func UpdateUpcAdicionalById(m *UpcAdicional) (err error) {
 	return
 }
 
-// DeleteUpcAdicional deletes UpcAdicional by Id and returns error if
+// DeleteTipoNovedadSeguridadSocial deletes TipoNovedadSeguridadSocial by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteUpcAdicional(id int) (err error) {
+func DeleteTipoNovedadSeguridadSocial(id int) (err error) {
 	o := orm.NewOrm()
-	v := UpcAdicional{Id: id}
+	v := TipoNovedadSeguridadSocial{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&UpcAdicional{Id: id}); err == nil {
+		if num, err = o.Delete(&TipoNovedadSeguridadSocial{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

@@ -87,6 +87,54 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "GetAll",
+			Router: `/`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "GetOne",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "Put",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"put"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "Delete",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"delete"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:DetalleNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "TrRegistrarDetalle",
+			Router: `/tr_registrar_detalle`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EstadoSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:EstadoSeguridadSocialController"],
 		beego.ControllerComments{
 			Method: "Post",
@@ -256,6 +304,46 @@ func init() {
 			Params: nil})
 
 	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:RangoEdadUpcController"],
+		beego.ControllerComments{
+			Method: "Delete",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"delete"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "GetAll",
+			Router: `/`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "GetOne",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"],
+		beego.ControllerComments{
+			Method: "Put",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"put"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:TipoNovedadSeguridadSocialController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,

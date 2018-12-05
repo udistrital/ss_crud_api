@@ -3,20 +3,22 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/udistrital/ss_crud_api/models"
+	"fmt"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
+	"github.com/manucorporat/try"
+	"github.com/udistrital/ss_crud_api/models"
 )
 
-// AportanteController operations for Aportante
-type AportanteController struct {
+// DetalleNovedadSeguridadSocialController operations for DetalleNovedadSeguridadSocial
+type DetalleNovedadSeguridadSocialController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *AportanteController) URLMapping() {
+func (c *DetalleNovedadSeguridadSocialController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -26,15 +28,15 @@ func (c *AportanteController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create Aportante
-// @Param	body		body 	models.Aportante	true		"body for Aportante content"
-// @Success 201 {int} models.Aportante
+// @Description create DetalleNovedadSeguridadSocial
+// @Param	body		body 	models.DetalleNovedadSeguridadSocial	true		"body for DetalleNovedadSeguridadSocial content"
+// @Success 201 {int} models.DetalleNovedadSeguridadSocial
 // @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *AportanteController) Post() {
-	var v models.Aportante
+func (c *DetalleNovedadSeguridadSocialController) Post() {
+	var v models.DetalleNovedadSeguridadSocial
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddAportante(&v); err == nil {
+		if _, err := models.AddDetalleNovedadSeguridadSocial(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -50,15 +52,15 @@ func (c *AportanteController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get Aportante by id
+// @Description get DetalleNovedadSeguridadSocial by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Aportante
+// @Success 200 {object} models.DetalleNovedadSeguridadSocial
 // @Failure 404 not found resource
 // @router /:id [get]
-func (c *AportanteController) GetOne() {
+func (c *DetalleNovedadSeguridadSocialController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetAportanteById(id)
+	v, err := models.GetDetalleNovedadSeguridadSocialById(id)
 	if err != nil {
 		beego.Error(err)
 		c.Abort("404")
@@ -70,17 +72,17 @@ func (c *AportanteController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get Aportante
+// @Description get DetalleNovedadSeguridadSocial
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Aportante
+// @Success 200 {object} models.DetalleNovedadSeguridadSocial
 // @Failure 404 not found resource
 // @router / [get]
-func (c *AportanteController) GetAll() {
+func (c *DetalleNovedadSeguridadSocialController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -122,7 +124,7 @@ func (c *AportanteController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllAportante(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllDetalleNovedadSeguridadSocial(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		beego.Error(err)
 		c.Abort("404")
@@ -137,18 +139,18 @@ func (c *AportanteController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the Aportante
+// @Description update the DetalleNovedadSeguridadSocial
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Aportante	true		"body for Aportante content"
-// @Success 200 {object} models.Aportante
+// @Param	body		body 	models.DetalleNovedadSeguridadSocial	true		"body for DetalleNovedadSeguridadSocial content"
+// @Success 200 {object} models.DetalleNovedadSeguridadSocial
 // @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
-func (c *AportanteController) Put() {
+func (c *DetalleNovedadSeguridadSocialController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Aportante{Id: id}
+	v := models.DetalleNovedadSeguridadSocial{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateAportanteById(&v); err == nil {
+		if err := models.UpdateDetalleNovedadSeguridadSocialById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
 			beego.Error(err)
@@ -163,19 +165,52 @@ func (c *AportanteController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the Aportante
+// @Description delete the DetalleNovedadSeguridadSocial
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 404 not found resource
 // @router /:id [delete]
-func (c *AportanteController) Delete() {
+func (c *DetalleNovedadSeguridadSocialController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteAportante(id); err == nil {
+	if err := models.DeleteDetalleNovedadSeguridadSocial(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
 		beego.Error(err)
 		c.Abort("404")
 	}
 	c.ServeJSON()
+}
+
+// TrRegistrarDetalle ...
+// @Title TrRegistrarDetalle
+// @Description create TrRegistrarDetalle
+// @Param	body		body 	interface{}	true		"body for DetalleNovedadSeguridadSocial content"
+// @Success 201 {int} models.Alert
+// @Failure 403 body is empty
+// @router /tr_registrar_detalle [post]
+func (c *DetalleNovedadSeguridadSocialController) TrRegistrarDetalle() {
+	var v []map[string]interface{}
+	try.This(func() {
+		err := json.Unmarshal(c.Ctx.Input.RequestBody, &v)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		alerta, err := models.RegistrarDetalleNovedad(v)
+		if err != nil {
+			panic(alerta)
+		}
+		c.Data["json"] = alerta
+	}).Catch(func(e try.E) {
+		beego.Error("error en TrRegistrarDetalle: ", e)
+		c.Data["json"] = e
+	})
+	c.ServeJSON()
+}
+
+func ReturnError() (string, error) {
+	return "", fmt.Errorf("this is an %s error", "internal server")
+	// or
+	return "", errors.New("this is an error")
 }
