@@ -8,10 +8,12 @@ import (
 	"github.com/astaxie/beego"
 )
 
+// TrPeriodoPagoController ...
 type TrPeriodoPagoController struct {
 	beego.Controller
 }
 
+// URLMapping ...
 func (c *TrPeriodoPagoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 }

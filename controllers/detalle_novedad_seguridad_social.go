@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 
@@ -207,10 +206,4 @@ func (c *DetalleNovedadSeguridadSocialController) TrRegistrarDetalle() {
 		c.Data["json"] = e
 	})
 	c.ServeJSON()
-}
-
-func ReturnError() (string, error) {
-	return "", fmt.Errorf("this is an %s error", "internal server")
-	// or
-	return "", errors.New("this is an error")
 }
