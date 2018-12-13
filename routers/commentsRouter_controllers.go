@@ -217,6 +217,14 @@ func init() {
 
 	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
 		beego.ControllerComments{
+			Method: "GetParametroEntidad",
+			Router: `/GetParametroEntidad/:id`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/ss_crud_api/controllers:PagoController"],
+		beego.ControllerComments{
 			Method: "PagosPorPeriodoPago",
 			Router: `/PagosPorPeriodoPago`,
 			AllowHTTPMethods: []string{"get"},
