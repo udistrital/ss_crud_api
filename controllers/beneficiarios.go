@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-
+	"fmt"
 	"github.com/udistrital/ss_crud_api/models"
 
 	"github.com/astaxie/beego"
@@ -35,18 +35,21 @@ func (c *BeneficiariosController) URLMapping() {
 func (c *BeneficiariosController) Post() {
 	var v models.Beneficiarios
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		beego.Info("beneficiario info: ", v)
+		fmt.Println("beneficiario info: ", v)
+		//beego.Info("beneficiario info: ", v)
 		if _, err := models.AddBeneficiarios(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			beego.Info("err1: ", err)
-			beego.Error(err)
+			fmt.Println("err1: ", err)
+			//beego.Info("err1: ", err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Info("err2: ", err)
-		beego.Error(err)
+		fmt.Println("err2: ", err)
+		//beego.Info("err2: ", err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -64,7 +67,8 @@ func (c *BeneficiariosController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetBeneficiariosById(id)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		c.Data["json"] = v
@@ -128,7 +132,8 @@ func (c *BeneficiariosController) GetAll() {
 
 	l, err := models.GetAllBeneficiarios(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		if l == nil {
@@ -155,11 +160,13 @@ func (c *BeneficiariosController) Put() {
 		if err := models.UpdateBeneficiariosById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -178,7 +185,8 @@ func (c *BeneficiariosController) Delete() {
 	if err := models.DeleteBeneficiarios(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	}
 	c.ServeJSON()
