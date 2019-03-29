@@ -43,7 +43,8 @@ func (c *AportanteController) Post() {
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -159,7 +160,8 @@ func (c *AportanteController) Put() {
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
