@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-
+	"fmt"
 	"github.com/udistrital/ss_crud_api/models"
 
 	"github.com/astaxie/beego"
@@ -40,11 +40,13 @@ func (c *TipoUpcController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -62,7 +64,8 @@ func (c *TipoUpcController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetTipoUpcById(id)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		c.Data["json"] = v
@@ -126,7 +129,8 @@ func (c *TipoUpcController) GetAll() {
 
 	l, err := models.GetAllTipoUpc(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		if l == nil {
@@ -153,11 +157,13 @@ func (c *TipoUpcController) Put() {
 		if err := models.UpdateTipoUpcById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -176,7 +182,8 @@ func (c *TipoUpcController) Delete() {
 	if err := models.DeleteTipoUpc(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	}
 	c.ServeJSON()
@@ -193,7 +200,8 @@ func (c *TipoUpcController) RegistrarTipo() {
 	try.This(func() {
 		var v models.TrTipoUpc
 		if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			panic(err.Error())
 		}
 		alerta, err := models.RegistrarTiposUpc(&v)
@@ -202,7 +210,8 @@ func (c *TipoUpcController) RegistrarTipo() {
 			panic(err.Error())
 		}
 	}).Catch(func(e try.E) {
-		beego.Error("error en RegistrarTipo: ", e)
+		fmt.Println("error en RegistrarTipo: ", e)
+		//beego.Error("error en RegistrarTipo: ", e)
 	})
 	c.ServeJSON()
 }
