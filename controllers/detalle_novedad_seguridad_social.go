@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/manucorporat/try"
 	"github.com/udistrital/ss_crud_api/models"
@@ -39,11 +39,13 @@ func (c *DetalleNovedadSeguridadSocialController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -61,7 +63,8 @@ func (c *DetalleNovedadSeguridadSocialController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetDetalleNovedadSeguridadSocialById(id)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		c.Data["json"] = v
@@ -125,7 +128,8 @@ func (c *DetalleNovedadSeguridadSocialController) GetAll() {
 
 	l, err := models.GetAllDetalleNovedadSeguridadSocial(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		if l == nil {
@@ -156,7 +160,8 @@ func (c *DetalleNovedadSeguridadSocialController) Put() {
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -175,7 +180,8 @@ func (c *DetalleNovedadSeguridadSocialController) Delete() {
 	if err := models.DeleteDetalleNovedadSeguridadSocial(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	}
 	c.ServeJSON()
@@ -202,7 +208,8 @@ func (c *DetalleNovedadSeguridadSocialController) TrRegistrarDetalle() {
 		}
 		c.Data["json"] = alerta
 	}).Catch(func(e try.E) {
-		beego.Error("error en TrRegistrarDetalle: ", e)
+		fmt.Println("error en TrRegistrarDetalle: ", e)
+		//beego.Error("error en TrRegistrarDetalle: ", e)
 		c.Data["json"] = e
 	})
 	c.ServeJSON()
