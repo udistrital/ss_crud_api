@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-
+	"fmt"
 	"github.com/udistrital/ss_crud_api/models"
 
 	"github.com/astaxie/beego"
@@ -39,11 +39,13 @@ func (c *PeriodoPagoController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -61,7 +63,8 @@ func (c *PeriodoPagoController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetPeriodoPagoById(id)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		c.Data["json"] = v
@@ -125,7 +128,8 @@ func (c *PeriodoPagoController) GetAll() {
 
 	l, err := models.GetAllPeriodoPago(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		if l == nil {
@@ -152,11 +156,13 @@ func (c *PeriodoPagoController) Put() {
 		if err := models.UpdatePeriodoPagoById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -175,7 +181,8 @@ func (c *PeriodoPagoController) Delete() {
 	if err := models.DeletePeriodoPago(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	}
 	c.ServeJSON()
