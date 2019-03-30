@@ -156,7 +156,8 @@ func (c *DetalleNovedadSeguridadSocialController) Put() {
 		if err := models.UpdateDetalleNovedadSeguridadSocialById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
