@@ -156,7 +156,8 @@ func (c *RangoEdadUpcController) Put() {
 		if err := models.UpdateRangoEdadUpcById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
