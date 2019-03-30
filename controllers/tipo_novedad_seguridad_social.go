@@ -6,7 +6,7 @@ import (
 	"github.com/udistrital/ss_crud_api/models"
 	"strconv"
 	"strings"
-
+	"fmt"
 	"github.com/astaxie/beego"
 )
 
@@ -38,11 +38,13 @@ func (c *TipoNovedadSeguridadSocialController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -60,7 +62,8 @@ func (c *TipoNovedadSeguridadSocialController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetTipoNovedadSeguridadSocialById(id)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		c.Data["json"] = v
@@ -124,7 +127,8 @@ func (c *TipoNovedadSeguridadSocialController) GetAll() {
 
 	l, err := models.GetAllTipoNovedadSeguridadSocial(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		if l == nil {
@@ -151,11 +155,13 @@ func (c *TipoNovedadSeguridadSocialController) Put() {
 		if err := models.UpdateTipoNovedadSeguridadSocialById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			beego.Error(err)
+			fmt.Println(err)
+			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -174,7 +180,8 @@ func (c *TipoNovedadSeguridadSocialController) Delete() {
 	if err := models.DeleteTipoNovedadSeguridadSocial(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		beego.Error(err)
+		fmt.Println(err)
+		//beego.Error(err)
 		c.Abort("404")
 	}
 	c.ServeJSON()
