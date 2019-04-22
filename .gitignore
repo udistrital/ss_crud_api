@@ -2,3 +2,17 @@ lastupdate.tmp
 ss_crud_api
 ss_crud_api.exe
 ss_crud_api.exe~
+.vscode/
+main
+.scannerwork/
+swagger/*.png
+swagger/*.html
+swagger/*.js
+swagger/*.map
+swagger/*.css
+swagger/*.yml
+swagger/css/
+swagger/fonts/
+swagger/images/
+swagger/lang/
+swagger/lib/
