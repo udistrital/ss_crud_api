@@ -27,12 +27,11 @@ func (c *TrPeriodoPagoController) URLMapping() {
 func (c *TrPeriodoPagoController) Post() {
 	var v models.TrPeriodoPago
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if alerta, err := models.RegistrarPagos(&v); err == nil {
+		alerta, err := models.RegistrarPagos(&v)
+		if err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = alerta
-		} else {
-			c.Data["json"] = alerta
 		}
+		c.Data["json"] = alerta
 	} else {
 		c.Data["json"] = err.Error()
 	}

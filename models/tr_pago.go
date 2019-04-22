@@ -2,6 +2,7 @@ package models
 
 import "github.com/astaxie/beego/orm"
 
+// TrPeriodoPago estructura para la transacción al registrar pagos de seguridad social
 type TrPeriodoPago struct {
 	PeriodoPago *PeriodoPago
 	Pagos       []*Pago
@@ -18,16 +19,15 @@ func RegistrarPagos(m *TrPeriodoPago) (alerta Alert, err error) {
 			if _, err = o.Insert(v); err != nil {
 				alerta = Alert{Type: "error", Code: "E_PAGOS", Body: err}
 				o.Rollback()
-				break
+				return alerta, err
 			}
 		}
 		alerta = Alert{Type: "success", Code: "Ok", Body: err}
 		o.Commit()
 	} else {
-
 		alerta = Alert{Type: "error", Code: "E_PERIODO", Body: err}
 		o.Rollback()
 	}
 
-	return alerta, err
+	return
 }
