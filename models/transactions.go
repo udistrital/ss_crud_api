@@ -15,7 +15,7 @@ func RegistrarDetalleNovedad(m interface{}) (alerta Alert, err error) {
 	for _, novedad := range m.([]map[string]interface{}) {
 
 		detalle := DetalleNovedadSeguridadSocial{
-			Descripcion:              "",
+			Descripcion:              novedad["Descripcion"].(string),
 			ConceptoNominaPorPersona: int(novedad["Id"].(float64)),
 		}
 		if novedad["Descripcion"] != nil {

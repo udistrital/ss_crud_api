@@ -9,13 +9,14 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
+// DetalleNovedadSeguridadSocial estructura de la tabla
 type DetalleNovedadSeguridadSocial struct {
-	Id int `orm:"column(id);pk;auto"`
-	// TipoNovedadSeguridadSocial *TipoNovedadSeguridadSocial `orm:"column(tipo_novedad_seguridad_social);rel(fk)"`
+	Id                       int    `orm:"column(id);pk;auto"`
 	Descripcion              string `orm:"column(descripcion);null"`
 	ConceptoNominaPorPersona int    `orm:"column(concepto_nomina_por_persona)"`
 }
 
+// TableName nombre de la tabla
 func (t *DetalleNovedadSeguridadSocial) TableName() string {
 	return "detalle_novedad_seguridad_social"
 }

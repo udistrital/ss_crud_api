@@ -3,9 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
-	"fmt"
+
 	"github.com/astaxie/beego"
 	"github.com/manucorporat/try"
 	"github.com/udistrital/ss_crud_api/models"
@@ -210,7 +211,6 @@ func (c *DetalleNovedadSeguridadSocialController) TrRegistrarDetalle() {
 		c.Data["json"] = alerta
 	}).Catch(func(e try.E) {
 		fmt.Println("error en TrRegistrarDetalle: ", e)
-		//beego.Error("error en TrRegistrarDetalle: ", e)
 		c.Data["json"] = e
 	})
 	c.ServeJSON()
