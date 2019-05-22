@@ -3,11 +3,12 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/udistrital/ss_crud_api/models"
+	"fmt"
 	"strconv"
 	"strings"
-	"fmt"
+
 	"github.com/astaxie/beego"
+	"github.com/udistrital/ss_crud_api/models"
 )
 
 // AportanteController operations for Aportante
@@ -39,12 +40,11 @@ func (c *AportanteController) Post() {
 			c.Data["json"] = v
 		} else {
 			fmt.Println(err)
-			//beego.Error(err)
+
 			c.Abort("400")
 		}
 	} else {
 		fmt.Println(err)
-		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -63,7 +63,6 @@ func (c *AportanteController) GetOne() {
 	v, err := models.GetAportanteById(id)
 	if err != nil {
 		fmt.Println(err)
-		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		c.Data["json"] = v
@@ -128,7 +127,6 @@ func (c *AportanteController) GetAll() {
 	l, err := models.GetAllAportante(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		fmt.Println(err)
-		//beego.Error(err)
 		c.Abort("404")
 	} else {
 		if l == nil {
@@ -156,12 +154,10 @@ func (c *AportanteController) Put() {
 			c.Data["json"] = v
 		} else {
 			fmt.Println(err)
-			//beego.Error(err)
 			c.Abort("400")
 		}
 	} else {
 		fmt.Println(err)
-		//beego.Error(err)
 		c.Abort("400")
 	}
 	c.ServeJSON()
@@ -181,7 +177,6 @@ func (c *AportanteController) Delete() {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
 		fmt.Println(err)
-		//beego.Error(err)
 		c.Abort("404")
 	}
 	c.ServeJSON()
