@@ -1,3 +1,9 @@
+### ESTE ES UN REPOSITORIO ANTIGUO.
+La actualización del nuevo repositorio se encuentra en: https://github.com/udistrital/seguridad_social_crud
+seguridad_social_crud es simplemente un --mirror push de este repositorio. 
+
+
+
 # ss_crud_api
 
 ss_crud_api, API de entidades que utiliza el sistema de Seguridad Social
