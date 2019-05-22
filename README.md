@@ -1,4 +1,4 @@
-### REPOSITORIO ANTIGUO.
+### ESTE ES UN REPOSITORIO ANTIGUO.
 La actualización del nuevo repositorio se encuentra en: https://github.com/udistrital/seguridad_social_crud
 seguridad_social_crud es simplemente un --mirror push de este repositorio. 
 
